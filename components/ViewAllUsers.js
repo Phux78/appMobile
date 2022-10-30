@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
 
-export default function ViewAllUser(){
+const ViewAllUser = () => {
   const [ AllUsers, setAllUsers ] = useState([]);
-  const API = 'http://192.168.48.131:9000/freelances';
+  const API = 'http://192.168.1.103:9000/freelances';
 
  
   useEffect(() => {
@@ -33,13 +33,17 @@ export default function ViewAllUser(){
             {
               AllUsers.map((item, key) => {
                 return(
-                  <TouchableOpacity style={styles.card} key={key} onPress={() => {viewUser(item.name)}}>
+                  
+                  <TouchableOpacity style={styles.card} key={key} onPress={() => {}}>
                     <Text>{ item.name }</Text>
                     <Text>{ item.email }</Text>
                     <Text>{ item.jobTitle }</Text>
                     <Text>{ item.phoneNumber }</Text>
                     
                   </TouchableOpacity>
+                  
+                   
+                  
                 );
               })
             }
@@ -48,6 +52,8 @@ export default function ViewAllUser(){
   );
 };
  
+export default ViewAllUser
+
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,

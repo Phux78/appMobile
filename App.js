@@ -2,78 +2,37 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './components/LoginScreen';
-import HomeScreen from './components/HomeScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import ViewAllUser from './components/ViewAllUsers';
-import RegisterScreen from './components/RegisterScreen'
-import Navbar from './components/Navbar';
+import HomeScreen from './components/HomeScreen';
+import Feeds from './components/Feeds';
 
-
-const Stack = createStackNavigator();
-//<Stack.Screen name="Home" component={HomeScreen}/>
-
-        {/* <Stack.Screen
-          name="ViewAllUser"
-          component={ViewAllUser}
-          options={{
-            title: 'ViewAllUser', 
-            headerStyle: {
-              backgroundColor: '#FFD700', 
-            },
-            headerTintColor: '#fff', 
-            headerTitleStyle: {
-              fontWeight: 'bold', 
-            },
-          }}
-        /> */}
-
-        {/* <Stack.Screen 
-        name="Navbar"
-        component={Navbar}
-        /> */}
+const Drawer = createDrawerNavigator();
+        
 const App = () => {
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator>
-      
-         <Stack.Screen
+      <Drawer.Navigator>
+
+        <Drawer.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ drawerLabel: 'Home' }}
+        />
+
+        <Drawer.Screen
+          name="Feeds"
+          component={Feeds}
+          options={{ drawerLabel: 'Feeds' }}
+        />
+
+        <Drawer.Screen
           name="ViewAllUser"
           component={ViewAllUser}
-          options={{
-            title: 'ViewAllUser', 
-            headerStyle: {
-              backgroundColor: '#FFD700', 
-            },
-            headerTintColor: '#fff', 
-            headerTitleStyle: {
-              fontWeight: 'bold', 
-            },
-          }}
-        /> 
-        
+          options={{ drawerLabel: 'View User' }}
+        />
 
-        <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{
-              title: 'Login', 
-              headerStyle: {
-                backgroundColor: '#FFD700', 
-              },
-              headerTintColor: '#fff', 
-              headerTitleStyle: {
-                fontWeight: 'bold', 
-              },
-            }}
-          /> 
-
-          <Stack.Screen 
-            name="Register"
-            component={RegisterScreen}
-          />
-
-        
-      </Stack.Navigator>      
+      </Drawer.Navigator>    
     </NavigationContainer>
   );
 }

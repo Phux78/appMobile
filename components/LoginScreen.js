@@ -2,7 +2,6 @@ import { Alert, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpac
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState } from 'react';    
 import { NavigationContainer } from '@react-navigation/native';
-import Navbar from './Navbar';
 
 function LoginScreen({ navigation })  {
 
