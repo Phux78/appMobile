@@ -2,12 +2,12 @@ import { Alert, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpac
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState } from 'react';    
 import { NavigationContainer } from '@react-navigation/native';
+import RegisterScreen from './RegisterScreen';
 
 function LoginScreen({ navigation })  {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     
   return (
     
