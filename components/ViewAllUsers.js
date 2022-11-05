@@ -39,10 +39,10 @@ const ViewAllUser = () => {
                     <Text>{ item.email }</Text>
                     <Text>{ item.jobTitle }</Text>
                     <Text>{ item.phoneNumber }</Text>
+                    <Text>Taworn</Text>
                     
                   </TouchableOpacity>
                   
-                   
                   
                 );
               })
