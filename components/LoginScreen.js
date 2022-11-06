@@ -1,8 +1,5 @@
-import { Alert, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { createStackNavigator } from '@react-navigation/stack';
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react';    
-import { NavigationContainer } from '@react-navigation/native';
-import RegisterScreen from './RegisterScreen';
 
 function LoginScreen({ navigation })  {
 
