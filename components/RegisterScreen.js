@@ -1,5 +1,4 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements';
 import React, { useState } from 'react';    
 
@@ -28,7 +27,7 @@ export default function RegisterScreen({ navigation }) {
         behavior="padding">
         
       
-      <View style={styles.checkbox}>
+      <View style={{flexDirection: "row"}}>
         <CheckBox
           title='Freelance'
           checked={Freelance}
@@ -133,10 +132,5 @@ const styles = StyleSheet.create({
       fontWeight: '700',
       fontSize: 16,
       paddingBottom: 5,
-  },
-
-  checkbox: {
-    width: '40%', 
-    
   },
 })
