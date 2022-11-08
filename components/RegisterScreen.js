@@ -51,7 +51,6 @@ export default function RegisterScreen({ navigation }) {
             value={name}
             onChangeText={text => setName(text)}
             style={styles.input}
-            secureTextEntry
         />
 
         <TextInput 

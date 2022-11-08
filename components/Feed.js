@@ -1,10 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-function Feed ({navigation}) {
+const Feed = ({navigation}) => {
   const [ AllUsers, setAllUsers ] = useState([]);
   const API = 'http://192.168.1.104:9000/freelances';
 
@@ -34,12 +32,12 @@ function Feed ({navigation}) {
             {
               AllUsers.map((item, key) => {
                 return(
-                  <TouchableOpacity style={[styles.card]} key={key} onPress={() => navigation.navigate('FreelanceProfile')}>
+                  <TouchableOpacity style={[styles.card]} key={key} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
                     <Text>{ item.name }</Text>
                     <Text>{ item.email }</Text>
                     <Text>{ item.jobTitle }</Text>
                     <Text>{ item.phoneNumber }</Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> 
                 );
               })
             }

@@ -31,7 +31,7 @@ const App = () => {
             name="FreelanceProfile"
             component={FreelanceProfile}
             options={{ drawerItemStyle: { height: 0 } }}
-          />
+          /> 
 
           <Drawer.Screen
               name="Login"

@@ -1,66 +1,19 @@
-import axios from 'axios';
 import React, { Component,  useState, useEffect } from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
 
-const ViewAllUser = () => {
-  const [ AllUsers, setAllUsers ] = useState([]);
-  const API = 'http://192.168.1.104:9000/freelances';
-
- 
-  useEffect(() => {
-    axios.get(API)
-        .then(function (response) {
-        setAllUsers(response.data);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-  }, []);
- 
-  const viewUser = (ViewUserId) => {
-    axios.get(`${API}/${ViewUserId}`)
-      .then(function (response) {
-        alert(response.data.name);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  return (
+const FreelanceProfile = ({navigation,route:{params:{item}}}) => {
+  //console.log(route.params.item)
+  return (    
     <SafeAreaView>          
-      <ScrollView >
-            {
-              AllUsers.map((item, key) => {
-                return(
-                  <View style={styles.container}>
-                    <View style={styles.header}></View>
-                      <Image style={styles.avatar} source={{uri: 'https://media.istockphoto.com/photos/pug-puppy-making-a-face-isolated-on-white-picture-id514376400?k=20&m=514376400&s=612x612&w=0&h=nBv17XcRBafBCnWBEAodAlZxAdMU6HJwGVG6WVYfnUk='}}/>
-                    <View style={styles.body}>
-                      <View style={styles.bodyContent}>
-                        <Text style={styles.name}>{ item.name }</Text>
-                        <Text style={styles.info}>{ item.jobTitle }</Text>
-                        <Text style={styles.contact}>{ item.email }{'\n'}{ item.phoneNumber }</Text>
-                        <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
-
-                        <TouchableOpacity style={styles.buttonContainer}>
-                          <Text style={styles.contact}>Response Rate { item.responseRate } {'\n'} On-Time Rate { item.onTimeRate }  </Text>
-                        </TouchableOpacity>              
-                        <TouchableOpacity style={styles.buttonContainer}>
-                          <Text>1 more tank or sup or im go 5th dps  :)</Text> 
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-                  </View>
-                );
-              })
-            }
-          </ScrollView>
+      <Text>{ item.name }</Text>
+      <Text>{ item.email }</Text>
+      <Text>{ item.jobTitle }</Text>
+      <Text>{ item.phoneNumber }</Text>
     </SafeAreaView>
   );
 };
  
-export default ViewAllUser
+export default FreelanceProfile
 
 const styles = StyleSheet.create({
   container: {
@@ -174,4 +127,3 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow",
   },
 });
-
