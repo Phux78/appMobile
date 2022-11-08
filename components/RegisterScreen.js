@@ -1,7 +1,9 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import React, { useState } from 'react';    
+import axios from "axios";
 
+const API = 'http://192.168.1.104:9000';
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -20,6 +22,25 @@ export default function RegisterScreen({ navigation }) {
     setEmployer(true);
   }
 
+  const register = () => {
+    if(!name || !email || !password) {
+      alert('hmmm, you missed somethings');
+      return;
+    }
+    axios.post(`${API}/freelances`, {
+      name: name,
+      email: email,
+      password: password,
+    })
+    .then((response) => {
+      if(response.data.status === 'ok') {
+        navigation.navigate('Login');
+      }
+    })
+    .catch((error) => {
+      console.log(error.message);
+    })
+  }
 
   return (
     <KeyboardAvoidingView
@@ -49,21 +70,21 @@ export default function RegisterScreen({ navigation }) {
         <TextInput 
             placeholder='Name'
             value={name}
-            onChangeText={text => setName(text)}
+            onChangeText={setName}
             style={styles.input}
         />
 
         <TextInput 
             placeholder='Email'
             value={email}
-            onChangeText={text => setEmail(text) }
+            onChangeText={setEmail}
             style={styles.input}
         />
 
         <TextInput 
             placeholder='Password'
             value={password}
-            onChangeText={text => setPassword(text)}
+            onChangeText={setPassword}
             style={styles.input}
             secureTextEntry
         />
@@ -73,7 +94,7 @@ export default function RegisterScreen({ navigation }) {
       <View style={styles.buttonContainer}>
 
         <TouchableOpacity
-            onPress={() => {}}
+            onPress={register}
             style={[styles.button]}
         >
             <Text style={styles.buttonText}>Register</Text>

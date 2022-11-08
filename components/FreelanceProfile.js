@@ -4,11 +4,28 @@ import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaVie
 const FreelanceProfile = ({navigation,route:{params:{item}}}) => {
   //console.log(route.params.item)
   return (    
-    <SafeAreaView>          
-      <Text>{ item.name }</Text>
-      <Text>{ item.email }</Text>
-      <Text>{ item.jobTitle }</Text>
-      <Text>{ item.phoneNumber }</Text>
+    <SafeAreaView>
+      <ScrollView >
+      <View style={styles.container}>
+        <View style={styles.header}></View>
+          <Image style={styles.avatar} source={{uri: 'https://media.istockphoto.com/photos/pug-puppy-making-a-face-isolated-on-white-picture-id514376400?k=20&m=514376400&s=612x612&w=0&h=nBv17XcRBafBCnWBEAodAlZxAdMU6HJwGVG6WVYfnUk='}}/>
+            <View style={styles.body}>
+              <View style={styles.bodyContent}>
+                <Text style={styles.name}>{ item.name }</Text>
+                <Text style={styles.info}>{ item.jobTitle }</Text>
+                <Text style={styles.contact}>{ item.email }{'\n'}{ item.phoneNumber }</Text>
+                <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+
+                <TouchableOpacity style={styles.buttonContainer}>
+                  <Text style={styles.contact}>Response Rate { item.responseRate } {'\n'} On-Time Rate { item.onTimeRate }  </Text>
+                </TouchableOpacity>              
+                <TouchableOpacity style={styles.buttonContainer}>
+                  <Text>1 more tank or sup or im go 5th dps  :)</Text> 
+                </TouchableOpacity>
+              </View>
+            </View>
+      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
