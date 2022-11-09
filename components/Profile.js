@@ -4,7 +4,7 @@ import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaVie
 
 const Profile = () => {
   const [ AllUsers, setAllUsers ] = useState([]);
-  const API = 'http://192.168.1.104:9000/freelances';
+  const API = 'http://192.168.1.104:9000/users';
 
  
   useEffect(() => {
