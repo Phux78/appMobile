@@ -47,7 +47,7 @@ const Profile = () => {
                           <Text style={styles.contact}>Response Rate { item.responseRate } {'\n'} On-Time Rate { item.onTimeRate }  </Text>
                         </TouchableOpacity>              
                         <TouchableOpacity style={styles.buttonContainer}>
-                          <Text>1 more tank or sup or im go 5th dps  :)</Text> 
+                          <Text>1 more tank or sup or im go 5th dps  :</Text> 
                         </TouchableOpacity>
                       </View>
                     </View>
