@@ -2,34 +2,7 @@ import axios from 'axios';
 import React, { Component,  useState, useEffect } from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
 
-<<<<<<< Updated upstream
-const Profile = () => {
-  const [ AllUsers, setAllUsers ] = useState([]);
-  const API = 'http://192.168.1.104:9000/users';
-
- 
-  useEffect(() => {
-    axios.get(API)
-        .then(function (response) {
-        setAllUsers(response.data);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-  }, []);
- 
-  const viewUser = (ViewUserId) => {
-    axios.get(`${API}/${ViewUserId}`)
-      .then(function (response) {
-        alert(response.data.name);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-=======
 const Profile = ({navigation}) => {
->>>>>>> Stashed changes
 
   return (
     <SafeAreaView>          
@@ -40,7 +13,7 @@ const Profile = ({navigation}) => {
               <View style={styles.body}>
                 <View style={styles.bodyContent}>
                   <Text style={styles.name}>Name</Text>
-                  <Text style={styles.info}>Jobtitle</Text>
+                  <Text style={styles.info}>UI Design</Text>
                   <Text style={styles.contact}>Email{'\n'}099 9999999</Text>
                   <Text style={styles.description}>This is demo porfile naka tumma nan so tried makmak, hope u like it naka</Text>
 
