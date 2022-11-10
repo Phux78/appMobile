@@ -27,7 +27,7 @@ export default function RegisterScreen({ navigation }) {
       alert('hmmm, you missed somethings');
       return;
     }
-    axios.post(`${API}/freelances`, {
+    axios.post(`${API}/users`, {
       name: name,
       email: email,
       password: password,
