@@ -2,59 +2,36 @@ import axios from 'axios';
 import React, { Component,  useState, useEffect } from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
 
-const Profile = () => {
-  const [ AllUsers, setAllUsers ] = useState([]);
-  const API = 'http://192.168.1.104:9000/freelances';
-
- 
-  useEffect(() => {
-    axios.get(API)
-        .then(function (response) {
-        setAllUsers(response.data);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-  }, []);
- 
-  const viewUser = (ViewUserId) => {
-    axios.get(`${API}/${ViewUserId}`)
-      .then(function (response) {
-        alert(response.data.name);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+const Profile = ({navigation}) => {
 
   return (
     <SafeAreaView>          
       <ScrollView >
-            {
-              AllUsers.map((item, key) => {
-                return(
                   <View style={styles.container}>
                     <View style={styles.header}></View>
                       <Image style={styles.avatar} source={{uri: 'https://media.istockphoto.com/photos/pug-puppy-making-a-face-isolated-on-white-picture-id514376400?k=20&m=514376400&s=612x612&w=0&h=nBv17XcRBafBCnWBEAodAlZxAdMU6HJwGVG6WVYfnUk='}}/>
                     <View style={styles.body}>
                       <View style={styles.bodyContent}>
-                        <Text style={styles.name}>{ item.name }</Text>
-                        <Text style={styles.info}>{ item.jobTitle }</Text>
-                        <Text style={styles.contact}>{ item.email }{'\n'}{ item.phoneNumber }</Text>
-                        <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+                        <Text style={styles.name}>Mangkron Kongjadee</Text>
+                        <Text style={styles.info}>UX/UI Design</Text>
+                        <Text style={styles.contact}>Mangkron@gmail.com{'\n'}085-555-5555</Text>
+                        <Text style={styles.description}>Juse demo Profile and we so tried makmak ngan so much naka, tae wa mangkron ruk took kon</Text>
 
                         <TouchableOpacity style={styles.buttonContainer}>
-                          <Text style={styles.contact}>Response Rate { item.responseRate } {'\n'} On-Time Rate { item.onTimeRate }  </Text>
+                          <Text style={styles.contact}>Response Rate {'\n'} On-Time Rate  </Text>
                         </TouchableOpacity>              
                         <TouchableOpacity style={styles.buttonContainer}>
                           <Text>1 more tank or sup or im go 5th dps  :)</Text> 
                         </TouchableOpacity>
+                        <TouchableOpacity
+                    onPress={() => navigation.navigate('EditProfile')}
+                    style={styles.button}
+                  >
+                    <Text style={styles.buttonText}>Edit</Text>
+                  </TouchableOpacity>
                       </View>
                     </View>
                   </View>
-                );
-              })
-            }
           </ScrollView>
     </SafeAreaView>
   );
