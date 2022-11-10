@@ -24,10 +24,10 @@ export default function RegisterScreen({ navigation }) {
 
   const register = () => {
     if(!name || !email || !password) {
-      alert('hmmm, you missed somethings');
+      alert('Register failed');
       return;
     }
-    axios.post(`${API}/freelances`, {
+    axios.post(`${API}/users`, {
       name: name,
       email: email,
       password: password,

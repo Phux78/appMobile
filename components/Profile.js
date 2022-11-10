@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component,  useState, useEffect } from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
 
+<<<<<<< Updated upstream
 const Profile = () => {
   const [ AllUsers, setAllUsers ] = useState([]);
   const API = 'http://192.168.1.104:9000/users';
@@ -26,35 +27,38 @@ const Profile = () => {
         console.log(error);
       });
   }
+=======
+const Profile = ({navigation}) => {
+>>>>>>> Stashed changes
 
   return (
     <SafeAreaView>          
       <ScrollView >
-            {
-              AllUsers.map((item, key) => {
-                return(
-                  <View style={styles.container}>
-                    <View style={styles.header}></View>
-                      <Image style={styles.avatar} source={{uri: 'https://media.istockphoto.com/photos/pug-puppy-making-a-face-isolated-on-white-picture-id514376400?k=20&m=514376400&s=612x612&w=0&h=nBv17XcRBafBCnWBEAodAlZxAdMU6HJwGVG6WVYfnUk='}}/>
-                    <View style={styles.body}>
-                      <View style={styles.bodyContent}>
-                        <Text style={styles.name}>{ item.name }</Text>
-                        <Text style={styles.info}>{ item.jobTitle }</Text>
-                        <Text style={styles.contact}>{ item.email }{'\n'}{ item.phoneNumber }</Text>
-                        <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+        <View style={styles.container}>
+              <View style={styles.header}></View>
+                <Image style={styles.avatar} source={{uri: 'https://media.istockphoto.com/photos/pug-puppy-making-a-face-isolated-on-white-picture-id514376400?k=20&m=514376400&s=612x612&w=0&h=nBv17XcRBafBCnWBEAodAlZxAdMU6HJwGVG6WVYfnUk='}}/>
+              <View style={styles.body}>
+                <View style={styles.bodyContent}>
+                  <Text style={styles.name}>Name</Text>
+                  <Text style={styles.info}>Jobtitle</Text>
+                  <Text style={styles.contact}>Email{'\n'}099 9999999</Text>
+                  <Text style={styles.description}>This is demo porfile naka tumma nan so tried makmak, hope u like it naka</Text>
 
-                        <TouchableOpacity style={styles.buttonContainer}>
-                          <Text style={styles.contact}>Response Rate { item.responseRate } {'\n'} On-Time Rate { item.onTimeRate }  </Text>
-                        </TouchableOpacity>              
-                        <TouchableOpacity style={styles.buttonContainer}>
-                          <Text>1 more tank or sup or im go 5th dps  :)</Text> 
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-                  </View>
-                );
-              })
-            }
+                  <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.contact}>Response Rate  {'\n'} On-Time Rate   </Text>
+                   </TouchableOpacity>              
+                   <TouchableOpacity style={styles.buttonContainer}>
+                    <Text>1 more tank or sup or im go 5th dps  :)</Text> 
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('EditProfile')}
+                    style={styles.button}
+                  >
+                    <Text style={styles.buttonText}>Edit</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
           </ScrollView>
     </SafeAreaView>
   );

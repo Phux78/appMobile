@@ -7,6 +7,7 @@ import FreelanceProfile from './components/FreelanceProfile';
 import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
 import Profile from './components/Profile';
+import EditProfile from './components/EditProfile';
 
 
 const Drawer = createDrawerNavigator();
@@ -42,6 +43,12 @@ const App = () => {
           <Drawer.Screen
               name="Register"
               component={RegisterScreen}
+              options={{ drawerItemStyle: { height: 0 } }}
+            />
+
+          <Drawer.Screen
+              name="EditProfile"
+              component={EditProfile}
               options={{ drawerItemStyle: { height: 0 } }}
             />
       </Drawer.Navigator>    
