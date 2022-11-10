@@ -8,7 +8,7 @@ const FreelanceProfile = ({navigation,route:{params:{item}}}) => {
       <ScrollView >
       <View style={styles.container}>
         <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{uri: 'https://media.istockphoto.com/photos/pug-puppy-making-a-face-isolated-on-white-picture-id514376400?k=20&m=514376400&s=612x612&w=0&h=nBv17XcRBafBCnWBEAodAlZxAdMU6HJwGVG6WVYfnUk='}}/>
+          <Image style={styles.avatar} source={{uri: 'https://pbs.twimg.com/profile_images/1119111560654233602/d0DFiz6W_400x400.jpg'}}/>
             <View style={styles.body}>
               <View style={styles.bodyContent}>
                 <Text style={styles.name}>{ item.name }</Text>
