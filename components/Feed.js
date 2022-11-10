@@ -4,7 +4,7 @@ import { ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'rea
 
 const Feed = ({navigation}) => {
   const [ AllUsers, setAllUsers ] = useState([]);
-  const API = 'http://192.168.1.104:9000/users';
+  const API = 'http:/192.168.250.131:9000/users';
 
   useEffect(() => {
     axios.get(API)
