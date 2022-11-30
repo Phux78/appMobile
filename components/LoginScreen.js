@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image} from 'react-native'
 import React, { useState } from 'react';    
 
 function LoginScreen({ navigation })  {
@@ -7,12 +7,12 @@ function LoginScreen({ navigation })  {
     const [password, setPassword] = useState('')
     
   return (
-    
     <KeyboardAvoidingView
         style={styles.container}
         behavior="padding">
-        
+
       <View style={styles.inputContainer}>
+
         <TextInput 
             placeholder='Email'
             value={email}
@@ -57,6 +57,9 @@ const styles = StyleSheet.create({
         marginTop: 150,
         
     },
+    bg: {
+        backgroundColor: 'yellow'
+      },
     inputContainer: {
         width: '80%'
     },

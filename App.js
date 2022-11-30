@@ -15,7 +15,7 @@ const Drawer = createDrawerNavigator();
 const App = () => {
   return (
     <NavigationContainer style={styles.container}>
-      <Drawer.Navigator>
+      <Drawer.Navigator >
           <Drawer.Screen 
             name="Profile"
             component={Profile}
@@ -60,5 +60,8 @@ export default App;
 
 const styles = StyleSheet.create({
   container: {
+  },
+  bg: {
+    backgroundColor: 'yellow'
   },
 });
