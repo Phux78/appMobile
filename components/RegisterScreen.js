@@ -3,8 +3,8 @@ import { CheckBox } from 'react-native-elements';
 import React, { useState } from 'react';    
 import axios from "axios";
 
-//const API = 'http://192.168.1.104:9000';
-const API = 'http:/192.168.250.131:9000/users';
+const API = 'http:/192.168.1.104:9000/users';
+//const API = 'http:/192.168.250.131:9000/users';
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
