@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -8,50 +7,37 @@ import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
+import { createStackNavigator } from '@react-navigation/stack';
+import index from './routers/Index';
 
 
-const Drawer = createDrawerNavigator();
+
+//const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
         
 const App = () => {
   return (
     <NavigationContainer style={styles.container}>
-      <Drawer.Navigator >
-          <Drawer.Screen 
-            name="Profile"
-            component={Profile}
-            options={{ drawerLabel: 'Profile' }}
-          />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
           
-          <Drawer.Screen
-            name="Feed"
-            component={Feed}
-            options={{ drawerLabel: 'Feed' }}
-          />
-          
-          <Drawer.Screen
-            name="FreelanceProfile"
-            component={FreelanceProfile}
-            options={{ drawerItemStyle: { height: 0 } }}
-          /> 
-
-          <Drawer.Screen
+          <Stack.Screen 
               name="Login"
               component={LoginScreen}
-              options={{ drawerLabel: 'Login' }}
+              options={{ drawerLabel: 'Login', }}
             />
 
-          <Drawer.Screen
+          <Stack.Screen
               name="Register"
               component={RegisterScreen}
               options={{ drawerItemStyle: { height: 0 } }}
             />
 
-          <Drawer.Screen
-              name="EditProfile"
-              component={EditProfile}
+          <Stack.Screen
+              name="index"
+              component={index}
               options={{ drawerItemStyle: { height: 0 } }}
             />
-      </Drawer.Navigator>    
+      </Stack.Navigator>    
     </NavigationContainer>
   );
 }

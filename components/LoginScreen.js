@@ -1,11 +1,39 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image} from 'react-native'
 import React, { useState } from 'react';    
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 function LoginScreen({ navigation })  {
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const API = 'http:/192.168.1.103:9000';
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
     
+    const _storeData = async (data) => {
+        try {
+            await AsyncStorage.setItem('@Token', data);
+            navigation.navigate('index');
+        } catch(err){
+            console.log(err);
+        }
+    }
+
+    const Login = ({}) => { console.log('login');
+        axios.post(`${API}/loginFL`, {
+            name: name,
+            password: password
+        })
+        .then((response) => {
+            if(response.data.status === 'ok'){
+                _storeData(response.data.token);
+            } else{
+                alert('Login fail');
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+
   return (
     <KeyboardAvoidingView
         style={styles.container}
@@ -14,16 +42,16 @@ function LoginScreen({ navigation })  {
       <View style={styles.inputContainer}>
 
         <TextInput 
-            placeholder='Email'
-            value={email}
-            onChangeText={text => setEmail(text) }
+            placeholder='Name'
+            value={name}
+            onChangeText={setName}
             style={styles.input}
         />
 
         <TextInput 
             placeholder='Password'
             value={password}
-            onChangeText={text => setPassword(text)}
+            onChangeText={setPassword}
             style={styles.input}
             secureTextEntry
         />
@@ -31,7 +59,7 @@ function LoginScreen({ navigation })  {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-            onPress={() => { }}
+            onPress={Login}
             style={styles.button}
         >
             <Text style={styles.buttonText}>Login</Text>

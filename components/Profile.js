@@ -1,41 +1,58 @@
 import axios from 'axios';
-import React, { Component,  useState, useEffect } from 'react';
+import React, { Component,  useState, useEffect, useContext } from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
+import { useIsFocused } from "@react-navigation/native";
+import { ActivityIndicator } from 'react-native-paper';
+import Token from "../Token/Token";
 
 const Profile = ({navigation}) => {
-  const [ AllUsers, setAllUsers ] = useState([]);
-  //const API = 'http:/192.168.250.131:9000/users';
-  const API = 'http:/192.168.1.104:9000/users';
+  const [ user, setUser ] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
 
+  //const API = 'http:/192.168.250.131:9000/';
+  const API = 'http:/192.168.1.103:9000';
+
+  const token = useContext(Token);
+  
+
+  const isFocused = useIsFocused();
   useEffect(() => {
-    axios.get(API)
-        .then(function (response) {
-        setAllUsers(response.data);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-  }, []);
+    if(isFocused) {
+      axios.get(`${API}/profileFL/me`, {
+      headers: {
+        "Authorization" : `Bearer ${token}`
+      }
+    })
+    .then(res => {
+      console.log(res.data);
+      setUser(res.data.user);
+      setIsLoaded(true);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    }
+  }, [isFocused]) 
 
+  console.log(user);
   return (
-    <SafeAreaView>          
+    
+    <SafeAreaView>
       <ScrollView >
-      {
-        AllUsers.map((item, key) => {
-        console.log(item)
-        return(
+        {
+          isLoaded && (
             <View style={styles.container}>
                   <View style={styles.header}></View>
-                    <Image style={styles.avatar} source={{ uri: item.profile_pic }}/>
+                    <Image style={styles.avatar} source={{}}/>
                   <View style={styles.body}>
                     <View style={styles.bodyContent}>
-                      <Text style={styles.name}>{ item.name }</Text>
-                      <Text style={styles.info}>{ item.jobTitle }</Text>
-                      <Text style={styles.contact}>{ item.email }{'\n'}{ item.phoneNumber }</Text>
+                      <Text style={styles.name}>{ user.name }</Text>
+                      <Text style={styles.info}>{ user.jobTitle }</Text>
+                      <Text style={styles.contact}>{ user.email }{'\n'}{ user.phoneNumber }</Text>
                       <Text style={styles.description}>This is demo porfile naka tumma nan so tried makmak, hope u like it naka</Text>
 
                       <TouchableOpacity style={styles.buttonContainer}>
-                        <Text style={styles.contact}>Response Rate { item.responseRate }  {'\n'} On-Time Rate  { item.onTimeRate }{ item.descRate } {'\n'}   </Text>
+                        <Text style={styles.contact}>Response Rate { user.responseRate }  {'\n'} On-Time Rate  { user.onTimeRate }{ user.descRate } {'\n'}   </Text>
                       </TouchableOpacity>              
                       <TouchableOpacity style={styles.buttonContainer}>
                         <Text>1 more tank or sup or im go 5th dps  :)</Text> 
@@ -49,16 +66,22 @@ const Profile = ({navigation}) => {
                     </View>
                   </View>
                 </View>
-                );
-              })
-             }
-          </ScrollView>
+            )
+          }
+        {
+          !isLoaded && (
+            <View>
+              <ActivityIndicator />
+            </View>
+        )
+        }
+      </ScrollView>
     </SafeAreaView>
   );
-};
- 
-export default Profile
+}
 
+export default Profile
+ 
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,

@@ -5,7 +5,7 @@ import { View,ScrollView, Image,TextInput, Text, TouchableOpacity,StyleSheet, Sa
 const Feed = ({navigation}) => {
   const [ AllUsers, setAllUsers ] = useState([]);
   //const API = 'http:/192.168.250.131:9000/users';
-  const API = 'http:/192.168.1.104:9000/users';
+  const API = 'http:/192.168.1.103:9000/freelances';
 
   useEffect(() => {
     axios.get(API)
@@ -17,15 +17,15 @@ const Feed = ({navigation}) => {
         });
   }, []);
  
-  // const viewUser = (ViewUserId) => {
-  //   axios.get(`${API}/${ViewUserId}`)
-  //     .then(function (response) {
-  //       alert(response.data.name);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
+  const viewUser = (ViewUserId) => {
+     axios.get(`${API}/${ViewUserId}`)
+       .then(function (response) {
+         alert(response.data.name);
+       })
+       .catch(function (error) {
+         console.log(error);
+       });
+  }
   
   return (
     <SafeAreaView style={styles.bgw}>       
