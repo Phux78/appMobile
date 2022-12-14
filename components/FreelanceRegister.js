@@ -5,8 +5,8 @@ import axios from "axios";
 
 //const API = 'http://192.168.1.104:9000';
 //const API = 'http:/192.168.250.131:9000';
-//const API = 'http:/192.168.1.103:9000';
-const API = 'http:/172.16.156.100:9000';
+const API = 'http:/192.168.1.103:9000';
+//const API = 'http:/172.16.156.100:9000';
 
 
 export default function FreelanceRegister({ navigation }) {
