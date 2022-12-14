@@ -14,9 +14,7 @@ function LoginScreen({ navigation })  {
     const _storeData = async (data) => {
         try {
             await AsyncStorage.setItem('@Token', data);
-            console.log(data);
-
-            navigation.navigate('Index');
+            navigation.navigate('index');
         } catch(err){
             console.log(err);
         }
