@@ -8,7 +8,7 @@ import RegisterScreen from './components/RegisterScreen';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import { createStackNavigator } from '@react-navigation/stack';
-import index from './routers/Index';
+import Index from './routers/Index';
 
 
 
@@ -33,8 +33,8 @@ const App = () => {
             />
 
           <Stack.Screen
-              name="index"
-              component={index}
+              name="Index"
+              component={Index}
               options={{ drawerItemStyle: { height: 0 } }}
             />
       </Stack.Navigator>    

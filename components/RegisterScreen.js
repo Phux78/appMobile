@@ -3,8 +3,9 @@ import { CheckBox } from 'react-native-elements';
 import React, { useState } from 'react';    
 import axios from "axios";
 
-const API = 'http:/192.168.1.104:9000/users';
-//const API = 'http:/192.168.250.131:9000/users';
+const API = 'http:/192.168.1.103:9000'
+//const API = 'http:/192.168.1.104:9000/';
+//const API = 'http:/192.168.250.131:9000/';
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ export default function RegisterScreen({ navigation }) {
       alert('Register failed');
       return;
     }
-    axios.post(`${API}/users`, {
+    axios.post(`${API}/regisFreelances`, {
       name: name,
       email: email,
       password: password,

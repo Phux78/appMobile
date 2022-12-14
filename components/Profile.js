@@ -38,7 +38,7 @@ const Profile = ({navigation}) => {
   return (
     
     <SafeAreaView>
-      <ScrollView >
+      {/* <ScrollView >
         {
           isLoaded && (
             <View style={styles.container}>
@@ -75,7 +75,7 @@ const Profile = ({navigation}) => {
             </View>
         )
         }
-      </ScrollView>
+      </ScrollView> */}
     </SafeAreaView>
   );
 }

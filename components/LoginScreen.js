@@ -5,13 +5,16 @@ import axios from 'axios';
 
 function LoginScreen({ navigation })  {
     const API = 'http:/192.168.1.103:9000';
+
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     
     const _storeData = async (data) => {
         try {
             await AsyncStorage.setItem('@Token', data);
-            navigation.navigate('index');
+            console.log(data);
+
+            navigation.navigate('Index');
         } catch(err){
             console.log(err);
         }
