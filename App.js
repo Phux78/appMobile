@@ -4,7 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Feed from './components/Feed';
 import FreelanceProfile from './components/FreelanceProfile';
 import LoginScreen from './components/LoginScreen';
-import RegisterScreen from './components/RegisterScreen';
+import RegisterScreen from './components/FreelanceRegister';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import { createStackNavigator } from '@react-navigation/stack';

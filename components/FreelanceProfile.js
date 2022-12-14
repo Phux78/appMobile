@@ -8,7 +8,7 @@ const FreelanceProfile = ({navigation,route:{params:{item}}}) => {
       <ScrollView >
       <View style={styles.container}>
         <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{ uri: item.profile_pic }}/>
+          <Image style={styles.avatar} source={{}}/>
             <View style={styles.body}>
               <View style={styles.bodyContent}>
                 <Text style={styles.name}>{ item.name }</Text>

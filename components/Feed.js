@@ -4,11 +4,18 @@ import { View,ScrollView, Image,TextInput, Text, TouchableOpacity,StyleSheet, Sa
 
 const Feed = ({navigation}) => {
   const [ AllUsers, setAllUsers ] = useState([]);
+
   //const API = 'http:/192.168.250.131:9000/users';
-  const API = 'http:/192.168.1.103:9000/freelances';
+  const API = 'http:/192.168.1.103:9000';
+  //const API = 'http:/192.168.1.104:9000/users';
+  //const API = 'http:/192.168.1.103:9000';
+  //const API = 'http:/172.16.156.100:9000';
+
+
+
 
   useEffect(() => {
-    axios.get(API)
+    axios.get(`${API}/freelances`)
         .then(function (response) {
         setAllUsers(response.data);
         })

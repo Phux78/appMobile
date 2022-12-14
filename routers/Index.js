@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Feed from '../components/Feed';
 import FreelanceProfile from '../components/FreelanceProfile';
-import LoginScreen from '../components/LoginScreen';
-import RegisterScreen from '../components/RegisterScreen';
+
 import Profile from '../components/Profile';
 import EditProfile from '../components/EditProfile';
 import Logout from '../components/Logout';
