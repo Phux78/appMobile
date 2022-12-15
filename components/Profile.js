@@ -1,22 +1,36 @@
 import axios from 'axios';
-import React, { Component,  useState, useEffect, useContext } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useState, useEffect, useContext}  from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
 import { useIsFocused } from "@react-navigation/native";
 import { ActivityIndicator } from 'react-native-paper';
 import Token from "../Token/Token";
+import CardInfo from '../CardInfo';
 
-const Profile = ({navigation}) => {
-  const [ user, setUser ] = useState({});
+const Profile = ({}) => {
+  const [ user, setUser ] = useState();
+  const [ token, setToken ] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
   //const API = 'http:/192.168.250.131:9000/';
   const API = 'http:/192.168.1.103:9000';
 
-  const token = useContext(Token);
+  //const token = useContext(Token);
   
-
+/*   const getToken = async () => {
+    return await AsyncStorage.getItem('@Token');
+  }  
+  const token = getToken(); */
+  
+  const getToken = ( async () => {
+    const TK = await AsyncStorage.getItem('@Token');
+    setToken(TK);
+  });
+  
+  getToken();
+  
   const isFocused = useIsFocused();
-  useEffect(() => {
+  useEffect(() => {    
     if(isFocused) {
       axios.get(`${API}/profileFL/me`, {
       headers: {
@@ -24,58 +38,32 @@ const Profile = ({navigation}) => {
       }
     })
     .then(res => {
-      console.log(res.data);
-      setUser(res.data.user);
+      setUser(res.data.freelance);
       setIsLoaded(true);
+      console.log(user);
     })
     .catch(err => {
       console.log(err);
     })
     }
-  }, [isFocused]) 
+  }, [isFocused] ) 
 
-  console.log(user);
+console.log('testttt',user);
+
+const useCard = () => {
+  if(isLoaded) {
+    return <CardInfo user={user}/>
+  } else(
+      <View>
+        <ActivityIndicator />
+      </View>
+  )
+}
   return (
     
     <SafeAreaView>
-      {/* <ScrollView >
-        {
-          isLoaded && (
-            <View style={styles.container}>
-                  <View style={styles.header}></View>
-                    <Image style={styles.avatar} source={{}}/>
-                  <View style={styles.body}>
-                    <View style={styles.bodyContent}>
-                      <Text style={styles.name}>{ user.name }</Text>
-                      <Text style={styles.info}>{ user.jobTitle }</Text>
-                      <Text style={styles.contact}>{ user.email }{'\n'}{ user.phoneNumber }</Text>
-                      <Text style={styles.description}>This is demo porfile naka tumma nan so tried makmak, hope u like it naka</Text>
-
-                      <TouchableOpacity style={styles.buttonContainer}>
-                        <Text style={styles.contact}>Response Rate { user.responseRate }  {'\n'} On-Time Rate  { user.onTimeRate }{ user.descRate } {'\n'}   </Text>
-                      </TouchableOpacity>              
-                      <TouchableOpacity style={styles.buttonContainer}>
-                        <Text>1 more tank or sup or im go 5th dps  :)</Text> 
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate('EditProfile')}
-                        style={styles.button}
-                      >
-                        <Text style={styles.buttonText}>Edit</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-            )
-          }
-        {
-          !isLoaded && (
-            <View>
-              <ActivityIndicator />
-            </View>
-        )
-        }
-      </ScrollView> */}
+      {/* {useCard()} */}
+      <View>{user}</View>
     </SafeAreaView>
   );
 }

@@ -7,6 +7,7 @@ import FreelanceProfile from '../components/FreelanceProfile';
 import Profile from '../components/Profile';
 import EditProfile from '../components/EditProfile';
 import Logout from '../components/Logout';
+import CardInfo from '../CardInfo';
 
 
 const Drawer = createDrawerNavigator();
@@ -22,18 +23,18 @@ const Index = () => {
               options={{ drawerLabel: 'Login' }}
             /> */}
 
-          <Drawer.Screen 
-            name="Profile"
-            component={Profile}
-            options={{ drawerLabel: 'Profile' }}
-          />
-          
           <Drawer.Screen
             name="Feed"
             component={Feed}
             options={{ drawerLabel: 'Feed' }}
           />
 
+          <Drawer.Screen 
+            name="Profile"
+            component={Profile}
+            options={{ drawerLabel: 'Profile' }}
+          />
+          
           <Drawer.Screen
             name="Logout"
             component={Logout}
@@ -43,6 +44,12 @@ const Index = () => {
           <Drawer.Screen
             name="FreelanceProfile"
             component={FreelanceProfile}
+            options={{ drawerItemStyle: { height: 0 } }}
+          /> 
+
+          <Drawer.Screen
+            name="CardInfo"
+            component={CardInfo}
             options={{ drawerItemStyle: { height: 0 } }}
           /> 
 {/* 

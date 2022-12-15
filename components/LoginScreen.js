@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
+//const API = 'http:/172.16.156.100:9000';
 //const API = 'http:/192.168.1.103:9000';
-const API = 'http:/172.16.156.100:9000';
+const API = 'http:/172.20.0.1:9000';
+
 function LoginScreen({ navigation })  {
-    const API = 'http:/192.168.1.103:9000';
 
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -14,13 +15,14 @@ function LoginScreen({ navigation })  {
     const _storeData = async (data) => {
         try {
             await AsyncStorage.setItem('@Token', data);
+            //console.log(data);
             navigation.navigate('Index');
         } catch(err){
             console.log(err);
         }
     }
 
-    const Login = ({}) => { console.log('login');
+    const Login = ({ }) => { console.log('login');
         axios.post(`${API}/loginFL`, {
             name: name,
             password: password
