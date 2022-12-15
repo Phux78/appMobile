@@ -8,13 +8,13 @@ const FreelanceProfile = ({navigation,route:{params:{item}}}) => {
       <ScrollView >
       <View style={styles.container}>
         <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{}}/>
+          <Image style={styles.avatar} source={{ uri: item.profile_pic }}/>
             <View style={styles.body}>
               <View style={styles.bodyContent}>
                 <Text style={styles.name}>{ item.name }</Text>
                 <Text style={styles.info}>{ item.jobTitle }</Text>
                 <Text style={styles.contact}>{ item.email }{'\n'}{ item.phoneNumber }</Text>
-                <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+                <Text style={styles.description}>fsaLorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
 
                 <TouchableOpacity style={styles.buttonContainer}>
                   <Text style={styles.contact}>Response Rate { item.responseRate } {'\n'} On-Time Rate { item.onTimeRate }  </Text>

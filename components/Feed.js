@@ -1,20 +1,31 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { View,ScrollView, Image,TextInput, Text, TouchableOpacity,StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Image, TextInput, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
+import { ListItem, SearchBar } from 'react-native-elements';
 
 const Feed = ({navigation}) => {
   const [ AllUsers, setAllUsers ] = useState([]);
+  const [search, setSearch] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const [masterDataSource, setMasterDataSource] = useState([]);
 
-  //const API = 'http:/192.168.250.131:9000/users';
-  const API = 'http:/192.168.1.103:9000';
+  const API = 'http:/192.168.239.131:9000';
+  //const API = 'http:/192.168.1.104:9000';
   //const API = 'http:/192.168.1.104:9000/users';
   //const API = 'http:/192.168.1.103:9000';
   //const API = 'http:/172.16.156.100:9000';
 
-
-
-
   useEffect(() => {
+    fetch('http:/192.168.239.131:9000/freelances')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      setFilteredDataSource(responseJson);
+      setMasterDataSource(responseJson);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
     axios.get(`${API}/freelances`)
         .then(function (response) {
         setAllUsers(response.data);
@@ -24,51 +35,143 @@ const Feed = ({navigation}) => {
         });
   }, []);
  
-  const viewUser = (ViewUserId) => {
-     axios.get(`${API}/${ViewUserId}`)
-       .then(function (response) {
-         alert(response.data.name);
-       })
-       .catch(function (error) {
-         console.log(error);
-       });
+  const searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSourcejobTitle
+      // Update FilteredDataSource
+      const newData = masterDataSource.filter(function (item) {
+        const itemData = item.jobTitle ? item.jobTitle.toUpperCase() : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource(masterDataSource);
+      setSearch(text);
+    }
+  };
+
+  const ItemView = ({ item }) => {
+    return (
+      // Flat List Item
+      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
+        {item.id}
+        {''}
+        {item.jobTitle.toUpperCase()}
+      </Text>
+    );
+  };
+
+  const ItemSeparatorView = () => {
+    return (
+      // Flat List Item Separator
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#C8C8C8',
+        }}
+      />
+    );
+  };
+
+  const getItem = (item) => {
+    // Function for click on an item
+    alert('Id : ' + item.id + 'jobTitle : ' + item.jobTitle);
+  };
+
+  if (typeof search === 'string' && search.length === 0) {
+    return (
+      <SafeAreaView style={styles.bgw}>
+        <View style={styles.container}>
+          <SearchBar
+            round
+            searchIcon={{ size: 24 }}
+            onChangeText={(text) => searchFilterFunction(text)}
+            onClear={(text) => searchFilterFunction('')}
+            placeholder="Search here"
+            value={search}
+          />
+        </View>
+        <ScrollView style={styles.bg}>
+              {
+                AllUsers.map((item, key) => {
+                  console.log(item)
+                  return(
+                    <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
+                      <View>
+                      <Image source={{uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
+                      </View>
+                      <View>
+                      <Text style={styles.txr}>{ item.name }</Text>
+                      <Text style={styles.txr}>{ item.email }</Text>
+                      <Text style={styles.txr}>{ item.jobTitle }</Text>
+                      <Text style={styles.txr}>{ item.phoneNumber }</Text>
+                      </View>
+                    </TouchableOpacity> 
+                  );
+                })
+              }
+            </ScrollView>
+      </SafeAreaView>
+    );
+  } else {
+    return (
+      <SafeAreaView style={styles.bgw}>
+        <View style={styles.container}>
+          <SearchBar
+            round
+            searchIcon={{ size: 24 }}
+            onChangeText={(text) => searchFilterFunction(text)}
+            onClear={(text) => searchFilterFunction('')}
+            placeholder="Search here"
+            value={search}
+          />
+          <FlatList
+            data={filteredDataSource}
+            keyExtractor={(item, index) => index.toString()}
+            ItemSeparatorComponent={ItemSeparatorView}
+            renderItem={ItemView}
+          />
+        </View>
+        <ScrollView style={styles.bg}>
+              {
+                AllUsers.map((item, key) => {
+                  console.log(item)
+                  return(
+                    <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
+                      <View>
+                      <Image source={{ uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
+                      </View>
+                      <View>
+                      <Text style={styles.txr}>{ item.name }</Text>
+                      <Text style={styles.txr}>{ item.email }</Text>
+                      <Text style={styles.txr}>{ item.jobTitle }</Text>
+                      <Text style={styles.txr}>{ item.phoneNumber }</Text>
+                      </View>
+                    </TouchableOpacity> 
+                  );
+                })
+              }
+            </ScrollView>
+      </SafeAreaView>
+    );
   }
-  
-  return (
-    <SafeAreaView style={styles.bgw}>       
-      <TextInput 
-            style={[styles.input]}
-            placeholder='search'
-      />   
-      <ScrollView style={styles.bg}>
-            {
-              AllUsers.map((item, key) => {
-                console.log(item)
-                return(
-                  <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
-                    <View>
-                    <Image source={{ uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
-                    </View>
-                    <View>
-                    <Text style={styles.txr}>{ item.name }</Text>
-                    <Text style={styles.txr}>{ item.email }</Text>
-                    <Text style={styles.txr}>{ item.jobTitle }</Text>
-                    <Text style={styles.txr}>{ item.phoneNumber }</Text>
-                    </View>
-                  </TouchableOpacity> 
-                );
-              })
-            }
-          </ScrollView>
-    </SafeAreaView>
-  );
 };
  
 export default Feed
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 10,
+    backgroundColor: 'white',
+  },
+  itemStyle: {
+    padding: 10,
   },
   txr:{
     textAlign:'right'
