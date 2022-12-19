@@ -10,6 +10,7 @@ import EditProfile from './components/EditProfile';
 import { createStackNavigator } from '@react-navigation/stack';
 import Index from './routers/Index';
 import React, {useState,useEffect,useCallback} from 'react';
+import SplashScreen from './components/SplashScreen';
 
 
 //const Drawer = createDrawerNavigator();
@@ -19,6 +20,11 @@ const App = () => {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+          {/* <Stack.Screen 
+              name="Splash"
+              component={SplashScreen}
+              
+            /> */}
           <Stack.Screen 
               name="Login"
               component={LoginScreen}

@@ -9,14 +9,10 @@ const Feed = ({navigation}) => {
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
 
-  const API = 'http:/192.168.239.131:9000';
-  //const API = 'http:/192.168.1.104:9000';
-  //const API = 'http:/192.168.1.104:9000/users';
-  //const API = 'http:/192.168.1.103:9000';
-  //const API = 'http:/172.16.156.100:9000';
+  const API = 'http:/192.168.214.131:9000';
 
   useEffect(() => {
-    fetch('http:/192.168.239.131:9000/freelances')
+    fetch('http:/192.168.214.131:9000/freelances')
     .then((response) => response.json())
     .then((responseJson) => {
       setFilteredDataSource(responseJson);
@@ -59,11 +55,22 @@ const Feed = ({navigation}) => {
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-        {item.id}
-        {''}
-        {item.jobTitle.toUpperCase()}
-      </Text>
+        <SafeAreaView style={styles.bgw}>
+          <ScrollView style={styles.bg}>
+            <TouchableOpacity style={[styles.card]} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
+              <View>
+                <Image source={{ uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
+              </View>
+
+              <View>
+                <Text style={styles.txr}>{ item.name }</Text>
+                <Text style={styles.txr}>{ item.email }</Text>
+                <Text style={styles.txr}>{ item.jobTitle }</Text>
+                <Text style={styles.txr}>{ item.phoneNumber }</Text>
+              </View>
+            </TouchableOpacity>                     
+          </ScrollView>
+        </SafeAreaView>
     );
   };
 
@@ -105,13 +112,13 @@ const Feed = ({navigation}) => {
                   return(
                     <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
                       <View>
-                      <Image source={{uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
+                        <Image source={{uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
                       </View>
                       <View>
-                      <Text style={styles.txr}>{ item.name }</Text>
-                      <Text style={styles.txr}>{ item.email }</Text>
-                      <Text style={styles.txr}>{ item.jobTitle }</Text>
-                      <Text style={styles.txr}>{ item.phoneNumber }</Text>
+                        <Text style={styles.txr}>{ item.name }</Text>
+                        <Text style={styles.txr}>{ item.email }</Text>
+                        <Text style={styles.txr}>{ item.jobTitle }</Text>
+                        <Text style={styles.txr}>{ item.phoneNumber }</Text>
                       </View>
                     </TouchableOpacity> 
                   );
@@ -139,26 +146,6 @@ const Feed = ({navigation}) => {
             renderItem={ItemView}
           />
         </View>
-        <ScrollView style={styles.bg}>
-              {
-                AllUsers.map((item, key) => {
-                  console.log(item)
-                  return(
-                    <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
-                      <View>
-                      <Image source={{ uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
-                      </View>
-                      <View>
-                      <Text style={styles.txr}>{ item.name }</Text>
-                      <Text style={styles.txr}>{ item.email }</Text>
-                      <Text style={styles.txr}>{ item.jobTitle }</Text>
-                      <Text style={styles.txr}>{ item.phoneNumber }</Text>
-                      </View>
-                    </TouchableOpacity> 
-                  );
-                })
-              }
-            </ScrollView>
       </SafeAreaView>
     );
   }

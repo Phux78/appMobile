@@ -1,11 +1,11 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image} from 'react-native'
-import React, { useState } from 'react';    
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Dimensions} from 'react-native'
+import React, { useState,  useEffect } from 'react';    
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 //const API = 'http:/172.16.156.100:9000';
 //const API = 'http:/192.168.1.103:9000';
-const API = 'http:/172.20.0.1:9000';
+const API = 'http:/192.168.214.131:9000';
 
 function LoginScreen({ navigation })  {
 
