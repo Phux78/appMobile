@@ -3,16 +3,19 @@ import React, { useState, useEffect } from 'react';
 import { View, ScrollView, Image, TextInput, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
 
-const Feed = ({navigation}) => {
+const FeedEmployer = ({navigation}) => {
   const [ AllUsers, setAllUsers ] = useState([]);
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
 
-  const API = 'http:/192.168.214.131:9000';
+  //const API = 'http:/192.168.239.131:9000';
+  const API = 'http:/192.168.1.103:9000';
+  //const API = 'http:/192.168.1.103:9000';
+  //const API = 'http:/172.16.156.100:9000';
 
   useEffect(() => {
-    fetch('http:/192.168.214.131:9000/freelances')
+    fetch(`${API}/freelances`)
     .then((response) => response.json())
     .then((responseJson) => {
       setFilteredDataSource(responseJson);
@@ -57,7 +60,7 @@ const Feed = ({navigation}) => {
       // Flat List Item
         <SafeAreaView style={styles.bgw}>
           <ScrollView style={styles.bg}>
-            <TouchableOpacity style={[styles.card]} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
+            <TouchableOpacity style={[styles.card]} onPress={() => navigation.navigate('FreelanceProfileEach',{item})}>
               <View>
                 <Image source={{ uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
               </View>
@@ -110,7 +113,7 @@ const Feed = ({navigation}) => {
                 AllUsers.map((item, key) => {
                   console.log(item)
                   return(
-                    <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfile',{item})}>
+                    <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfileEach',{item})}>
                       <View>
                         <Image source={{uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
                       </View>
@@ -151,7 +154,7 @@ const Feed = ({navigation}) => {
   }
 };
  
-export default Feed
+export default FeedEmployer
 
 const styles = StyleSheet.create({
   container: {

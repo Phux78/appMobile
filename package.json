@@ -24,6 +24,7 @@
     "AsyncStorage": "^0.1.5",
     "axios": "^1.1.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "expo": "^47.0.8",
     "expo-firebase-analytics": "~8.0.0",
     "expo-firebase-app": "^2.0.0",

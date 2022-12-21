@@ -16,22 +16,6 @@ export default function FreelanceRegister({ navigation }) {
   const [Jobtitle, setJobtitle] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [profile_pic, setProfile_pic] = useState('');
-  const [roll, setRoll] = useState('Freelance');
-
-
-  //const [Freelance, setFreelance] = useState('');
-  //const [Employer, setEmployer] = useState('');
-
-
-  /* const roleFreelance = () =>{
-    setFreelance(true);
-    setEmployer(false);
-  }
-
-  const roleEmployer = () =>{
-    setFreelance(false);
-    setEmployer(true);
-  } */
 
   const register = () => {
     if(!name || !email || !password || !phoneNumber) {
@@ -44,12 +28,11 @@ export default function FreelanceRegister({ navigation }) {
       password: password,
       phoneNumber: phoneNumber,
       profile_pic: profile_pic,
-      roll: roll,
     })
     .then((response) => {
       if(response.data.status === 'ok') {
         alert('Register success!!');
-        navigation.navigate('Login');
+        navigation.navigate('FreelanceLogin');
         
       }
     })
@@ -63,26 +46,9 @@ export default function FreelanceRegister({ navigation }) {
         style={styles.container}
         behavior="padding">
         
-      
-      {/* <View style={{flexDirection: "row"}}>
-        <CheckBox
-          title='Freelance'
-          checked={Freelance}
-          checkedIcon='dot-circle-o'
-          uncheckedIcon='circle-o'
-          onPress={roleFreelance}
-        />
-
-        <CheckBox 
-          title='Employer'
-          checked={Employer}
-          checkedIcon='dot-circle-o'
-          uncheckedIcon='circle-o'
-          onPress={roleEmployer}
-        />
-      </View>  */}
 
       <View style={styles.inputContainer}>
+        <Text>Freelance</Text>
         <TextInput 
             placeholder='Name'
             value={name}
@@ -130,7 +96,7 @@ export default function FreelanceRegister({ navigation }) {
         </TouchableOpacity> 
 
         <TouchableOpacity
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('FreelanceLogin')}
             style={[styles.button, styles.buttonOutline]}
         >
             <Text style={styles.buttonOutlineText}>Login</Text>

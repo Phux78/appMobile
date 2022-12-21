@@ -7,34 +7,36 @@ import { useIsFocused } from "@react-navigation/native";
 export default function CardInfo({user}) {
   return (
     <ScrollView >
+      <View style={styles.container}>
+        <View>{user.name}</View>
+          <View style={styles.header}>
+          
+          </View>
+            <Image style={styles.avatar} source={{}}/>
+              <View style={styles.body}>
+                <View style={styles.bodyContent}>
+                  <Text style={styles.name}>{ user.name }</Text>
+                  <Text style={styles.info}>{ user.jobTitle }</Text>
+                  <Text style={styles.contact}>{ user.email }{'\n'}{ user.phoneNumber }</Text>
+                  <Text style={styles.description}>This is demo porfile naka tumma nan so tried makmak, hope u like it naka</Text>
 
-    <View style={styles.container}>
-                  <View>{user.name}</View>
-                      <View style={styles.header}></View>
-                        <Image style={styles.avatar} source={{}}/>
-                      <View style={styles.body}>
-                        <View style={styles.bodyContent}>
-                          <Text style={styles.name}>{ user.name }</Text>
-                          <Text style={styles.info}>{ user.jobTitle }</Text>
-                          <Text style={styles.contact}>{ user.email }{'\n'}{ user.phoneNumber }</Text>
-                          <Text style={styles.description}>This is demo porfile naka tumma nan so tried makmak, hope u like it naka</Text>
+                  <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.contact}>Response Rate { user.responseRate }  {'\n'} On-Time Rate  { user.onTimeRate }{ user.descRate } {'\n'}   </Text>
+                  </TouchableOpacity>              
+                  <TouchableOpacity style={styles.buttonContainer}>
+                    <Text>1 more tank or sup or im go 5th dps  :)</Text> 
+                  </TouchableOpacity>
 
-                          <TouchableOpacity style={styles.buttonContainer}>
-                            <Text style={styles.contact}>Response Rate { user.responseRate }  {'\n'} On-Time Rate  { user.onTimeRate }{ user.descRate } {'\n'}   </Text>
-                          </TouchableOpacity>              
-                          <TouchableOpacity style={styles.buttonContainer}>
-                            <Text>1 more tank or sup or im go 5th dps  :)</Text> 
-                          </TouchableOpacity>
-                          <TouchableOpacity
-                            onPress={() => navigation.navigate('EditProfile')}
-                            style={styles.button}
-                          >
-                            <Text style={styles.buttonText}>Edit</Text>
-                          </TouchableOpacity>
-                        </View>
-                      </View>
-                    </View>
-                    </ScrollView>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('EditProfile')}
+                    style={styles.button}
+                  >
+                    <Text style={styles.buttonText}>Edit</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+      </View>
+    </ScrollView>
   );
 }
 

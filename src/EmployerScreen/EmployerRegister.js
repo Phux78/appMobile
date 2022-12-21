@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 //const API = 'http://192.168.1.104:9000';
-const API = 'http:/192.168.250.131:9000/users';
+const API = 'http:/192.168.1.103:9000';
 
 export default function EmployerRegister({ navigation }) {
   const [email, setEmail] = useState('');
@@ -12,40 +12,24 @@ export default function EmployerRegister({ navigation }) {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [profile_pic, setProfile_pic] = useState('');
-  const [roll, setRoll] = useState('Employer');
 
-
-  //const [Freelance, setFreelance] = useState('');
-  //const [Employer, setEmployer] = useState('');
-
-
-  /* const roleFreelance = () =>{
-    setFreelance(true);
-    setEmployer(false);
-  }
-
-  const roleEmployer = () =>{
-    setFreelance(false);
-    setEmployer(true);
-  } */
 
   const register = () => {
     if(!name || !email || !password || !phoneNumber) {
       alert('Register failed, Check your infomation again.');
       return;
     }
-    axios.post(`${API}/users`, {
+    axios.post(`${API}/regisEmployers`, {
       name: name,
       email: email,
       password: password,
       phoneNumber: phoneNumber,
       profile_pic: profile_pic,
-      roll: roll,
     })
     .then((response) => {
       if(response.data.status === 'ok') {
         alert('Register success!!');
-        navigation.navigate('Login');
+        navigation.navigate('EmployerLogin');
         
       }
     })
@@ -58,27 +42,10 @@ export default function EmployerRegister({ navigation }) {
     <KeyboardAvoidingView
         style={styles.container}
         behavior="padding">
-        
-      
-      {/* <View style={{flexDirection: "row"}}>
-        <CheckBox
-          title='Freelance'
-          checked={Freelance}
-          checkedIcon='dot-circle-o'
-          uncheckedIcon='circle-o'
-          onPress={roleFreelance}
-        />
-
-        <CheckBox 
-          title='Employer'
-          checked={Employer}
-          checkedIcon='dot-circle-o'
-          uncheckedIcon='circle-o'
-          onPress={roleEmployer}
-        />
-      </View>  */}
 
       <View style={styles.inputContainer}>
+        <Text>Employer</Text>
+
         <TextInput 
             placeholder='Name'
             value={name}
@@ -126,7 +93,7 @@ export default function EmployerRegister({ navigation }) {
         </TouchableOpacity> 
 
         <TouchableOpacity
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('EmployerLogin')}
             style={[styles.button, styles.buttonOutline]}
         >
             <Text style={styles.buttonOutlineText}>Login</Text>

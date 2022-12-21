@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Feed from '../components/Feed';
-import FreelanceProfile from '../components/FreelanceProfile';
 
-import Profile from '../components/Profile';
-import EditProfile from '../components/EditProfile';
-import Logout from '../components/Logout';
+import FeedEmployer from '../EmployerScreen/FeedEmployer';
+import FreelanceProfileEach from '../FreelanceScreen/FreelanceProfileEach';
+import Profile from '../Profile';
+import EditProfile from '../EditProfile';
+import Logout from '../Logout';
 import CardInfo from '../CardInfo';
 
 
@@ -16,16 +15,9 @@ const Index = () => {
   return (
 
       <Drawer.Navigator >
-          
-{/*           <Drawer.Screen
-              name="Login"
-              component={LoginScreen}
-              options={{ drawerLabel: 'Login' }}
-            /> */}
-
           <Drawer.Screen
-            name="Feed"
-            component={Feed}
+            name="FeedEmployer"
+            component={FeedEmployer}
             options={{ drawerLabel: 'Feed' }}
           />
 
@@ -42,8 +34,8 @@ const Index = () => {
           />    
           
           <Drawer.Screen
-            name="FreelanceProfile"
-            component={FreelanceProfile}
+            name="FreelanceProfileEach"
+            component={FreelanceProfileEach}
             options={{ drawerItemStyle: { height: 0 } }}
           /> 
 
@@ -52,12 +44,6 @@ const Index = () => {
             component={CardInfo}
             options={{ drawerItemStyle: { height: 0 } }}
           /> 
-{/* 
-          <Drawer.Screen
-              name="Register"
-              component={RegisterScreen}
-              options={{ drawerItemStyle: { height: 0 } }}
-            /> */}
 
           <Drawer.Screen
               name="EditProfile"

@@ -1,16 +1,14 @@
 import { StyleSheet, Text, View, Button, BackHandler, Alert } from 'react-native';
 import { NavigationContainer, useNavigation} from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import Feed from './components/Feed';
-import FreelanceProfile from './components/FreelanceProfile';
-import LoginScreen from './components/LoginScreen';
-import RegisterScreen from './components/FreelanceRegister';
-import Profile from './components/Profile';
-import EditProfile from './components/EditProfile';
 import { createStackNavigator } from '@react-navigation/stack';
-import Index from './routers/Index';
 import React, {useState,useEffect,useCallback} from 'react';
-import SplashScreen from './components/SplashScreen';
+
+
+import SplashScreen from './src/SplashScreen';
+import Index from './src/routers/Index';
+import SelectRoll from './src/routers/SelectRoll';
+import SelectFreelance from './src/SetRollFreelance/SelectFreelance';
+import SelectEmployer from './src/SetRollEmployer/SelectEmployer';
 
 
 //const Drawer = createDrawerNavigator();
@@ -25,24 +23,26 @@ const App = () => {
               component={SplashScreen}
               
             /> */}
+          
           <Stack.Screen 
-              name="Login"
-              component={LoginScreen}
-              options={{ drawerLabel: 'Login', }}
+              name="SelectRoll"
+              component={SelectRoll}
+          />
               
-            />
-
-          <Stack.Screen
-              name="Register"
-              component={RegisterScreen}
-              options={{ drawerItemStyle: { height: 0 } }}
-            />
-
           <Stack.Screen
               name="Index"
               component={Index}
-              options={{ drawerItemStyle: { height: 0 } }}
             />
+
+          <Stack.Screen
+              name="SelectFreelance"
+              component={SelectFreelance}
+          />
+
+          <Stack.Screen
+              name="SelectEmployer"
+              component={SelectEmployer}
+          />
       </Stack.Navigator>    
     </NavigationContainer>
   );
