@@ -5,7 +5,8 @@ import React, {useState,useEffect,useCallback} from 'react';
 
 
 import SplashScreen from './src/SplashScreen';
-import Index from './src/routers/Index';
+import IndexFreelance from './src/routers/IndexFreelance';
+import IndexEmployer from './src/routers/IndexEmployer';
 import SelectRoll from './src/routers/SelectRoll';
 import SelectFreelance from './src/SetRollFreelance/SelectFreelance';
 import SelectEmployer from './src/SetRollEmployer/SelectEmployer';
@@ -30,8 +31,13 @@ const App = () => {
           />
               
           <Stack.Screen
-              name="Index"
-              component={Index}
+              name="IndexFreelance"
+              component={IndexFreelance}
+            />
+          
+          <Stack.Screen
+              name="IndexEmployer"
+              component={IndexEmployer}
             />
 
           <Stack.Screen
@@ -43,6 +49,7 @@ const App = () => {
               name="SelectEmployer"
               component={SelectEmployer}
           />
+          
       </Stack.Navigator>    
     </NavigationContainer>
   );

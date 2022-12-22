@@ -1,40 +1,33 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Dimensions} from 'react-native'
-import React, { useState,  useEffect } from 'react';    
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, TouchableOpacity } from 'react-native'
+import React, {useState} from 'react';
 import axios from 'axios';
 
 const API = 'http:/192.168.1.103:9000';
 
-function FreelanceLogin({ navigation })  {
 
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('');
-    
-    const _storeData = async (data) => {
-        try {
-            await AsyncStorage.setItem('Token', data);
-            //console.log(data);
-            navigation.navigate('IndexFreelance');
-        } catch(err){
-            console.log(err);
+export default function CreatePost ({navigation}) {
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+
+
+    const createPostFunction = () => {
+        if(!title || !content){
+            alert('Looks like you forgot to fill in something.')
+            return;
         }
-    }
-
-    const Login = ({}) => { console.log('login');
-        axios.post(`${API}/loginFL`, {
-            name: name,
-            password: password
+        axios.post(`${API}/posts`,{
+            title: title,
+            content: content,
         })
         .then((response) => {
-            if(response.data.status === 'ok'){
-                _storeData(response.data.token);
-            } else{
-                alert('Login fail');
+            if(response.data.status === 201){
+                alert('Create post success.');
+                navigator.navigate('IndexEmployer');
             }
         })
-        .catch((err) => {
-            console.log(err);
-        })
+        .catch((error) => {
+            console.log(error.message);
+          })
     }
 
   return (
@@ -43,43 +36,41 @@ function FreelanceLogin({ navigation })  {
         behavior="padding">
 
       <View style={styles.inputContainer}>
-        <Text>Freelance</Text>
+        <Text>CreatePost</Text>
         <TextInput 
-            placeholder='Name'
-            value={name}
-            onChangeText={setName}
+            placeholder='Title'
+            value={title}
+            onChangeText={setTitle}
             style={styles.input}
         />
 
         <TextInput 
-            placeholder='Password'
-            value={password}
-            onChangeText={setPassword}
+            placeholder='Content'
+            value={content}
+            onChangeText={setContent}
             style={styles.input}
-            secureTextEntry
+            
         />
       </View>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-            onPress={Login}
+            onPress={createPostFunction}
             style={styles.button}
         >
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Post</Text>
         </TouchableOpacity>
         
         <TouchableOpacity
-            onPress={() => navigation.navigate('FreelanceRegister')}
+            onPress={() => navigation.navigate('FeedEmployer')}
             style={[styles.button, styles.buttonOutline]}
         >
-            <Text style={styles.buttonText2}>Register</Text>
+            <Text style={styles.buttonText2}>Cancel</Text>
         </TouchableOpacity> 
       </View>
     </KeyboardAvoidingView>
-  );
+  )
 }
-
-export default FreelanceLogin
 
 const styles = StyleSheet.create({
     container: {

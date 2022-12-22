@@ -6,15 +6,24 @@ import FreelanceProfileEach from '../FreelanceScreen/FreelanceProfileEach';
 import Profile from '../Profile';
 import EditProfile from '../EditProfile';
 import Logout from '../Logout';
+import FeedPost from '../FreelanceScreen/FeedPost';
 import CardInfo from '../CardInfo';
+import PostEach from '../EmployerScreen/PostEach';
+ 
 
 
 const Drawer = createDrawerNavigator();
         
-const Index = () => {
+const IndexFreelance = () => {
   return (
 
       <Drawer.Navigator >
+          <Drawer.Screen
+            name="FeedPost"
+            component={FeedPost}
+            options={{ drawerLabel: 'Home page' }}
+          />
+          
           <Drawer.Screen
             name="FeedEmployer"
             component={FeedEmployer}
@@ -26,13 +35,19 @@ const Index = () => {
             component={Profile}
             options={{ drawerLabel: 'Profile' }}
           />
-          
+
           <Drawer.Screen
             name="Logout"
             component={Logout}
             options={{ drawerLabel: 'Logout' }}
           />    
           
+          <Drawer.Screen
+            name="PostEach"
+            component={PostEach}
+            options={{ drawerItemStyle: { height: 0 } }}
+          />  
+
           <Drawer.Screen
             name="FreelanceProfileEach"
             component={FreelanceProfileEach}
@@ -54,7 +69,7 @@ const Index = () => {
   );
 }
 
-export default Index;
+export default IndexFreelance;
 
 const styles = StyleSheet.create({
   container: {

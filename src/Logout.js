@@ -7,8 +7,7 @@ export default function Logout() {
     const logout = async() => {
         try {
             await AsyncStorage.removeItem('Token');
-            await AsyncStorage.removeItem('');
-            navigation.replace('App');
+            navigation.replace('SelectRoll');
         }catch(error){
             console.log(error.message);
         }

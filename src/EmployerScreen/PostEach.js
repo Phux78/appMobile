@@ -1,98 +1,21 @@
-import axios from 'axios';
-import React, { Component,  useState, useEffect, useContext } from 'react';
+import React, { Component,  useState, useEffect } from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
-import { ActivityIndicator } from 'react-native-paper';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import CardInfo from './CardInfo';
 
-const Profile = () => {
-  const [ user, setUser ] = useState();
-  const [ token, setToken ] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  //const API = 'http:/192.168.250.131:9000/';
-  const API = 'http:/192.168.1.103:9000';
-  
-  const getToken = ( async () => {
-    const TK = await AsyncStorage.getItem('@Token');
-    setToken(TK);
-  });
-  
-  getToken();
-  
-/*   const isFocused = useIsFocused();
-  useEffect(() => {    
-    if(isFocused) {
-      axios.get(`${API}/profileFL/me`, {
-      headers: {
-        "Authorization" : `Bearer ${token}`
-      }
-    })
-    .then(res => {
-      setUser(JSON.stringify(res.data.freelance));
-      setIsLoaded(true);
-      console.log(user);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-    }
-  }, [isFocused] )  */
-
-  const isFocused = useIsFocused();
-  useEffect(() => {    
-    if(isFocused) {
-      const fetchUser = async() => {
-      const response = await axios.get(`${API}/profileFL/me`, {
-      headers: {
-        "Authorization" : `Bearer ${token}`
-      }
-    });
-    if(response.data.status === 200) {
-      setUser(JSON.stringify(response.data.freelance));
-      setIsLoaded(true);
-      console.log(token);
-    }
-    }
-      fetchUser();
-    }
-  }, [isFocused] )
-
-
-
-console.log('testttt',user);
-
-/* const useCard = () => {
-  if(isLoaded) {
-    return <CardInfo user={user}/>
-  } else(
-      <View>
-        <ActivityIndicator />
-      </View>
-  )
-} */
-  return (
+const PostEach = ({navigation,route:{params:{item}}}) => {
+    //params:{item}
+  console.log(item)
+  return (    
     <SafeAreaView>
-      {
-        isLoaded && (
-          
-          <Text>{user}</Text>
-        )
-      }
-      {
-        !isLoaded && (
-          <View>
-            <ActivityIndicator />
-          </View>
-        )
-      }
+        <View style={styles.container}>
+            <Text>{item.title}</Text>
+            <Text>{item.content}</Text>
+        </View>
     </SafeAreaView>
-  )
-}
-
-export default Profile
+  );
+};
  
+export default PostEach
+
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
@@ -117,9 +40,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: '100%',
   },
-  background : {
-    backgroundColor: 'yellow'
-  },  
   subTitle: {
     alignSelf: 'left',
     fontWeight: 'bold',
@@ -208,4 +128,3 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow",
   },
 });
-

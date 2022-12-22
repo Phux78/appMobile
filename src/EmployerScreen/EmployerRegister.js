@@ -28,9 +28,8 @@ export default function EmployerRegister({ navigation }) {
     })
     .then((response) => {
       if(response.data.status === 'ok') {
-        alert('Register success!!');
+        alert('Register success');
         navigation.navigate('EmployerLogin');
-        
       }
     })
     .catch((error) => {

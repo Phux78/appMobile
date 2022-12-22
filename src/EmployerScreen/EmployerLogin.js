@@ -15,7 +15,7 @@ function EmployerLogin({ navigation })  {
         try {
             await AsyncStorage.setItem('Token', data);
             //console.log(data);
-            navigation.navigate('Index');
+            navigation.navigate('IndexEmployer');
         } catch(err){
             console.log(err);
         }
