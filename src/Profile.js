@@ -5,6 +5,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 const Profile = ({navigation}) => {
   const [user, setUser] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
