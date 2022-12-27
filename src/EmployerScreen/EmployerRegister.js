@@ -38,110 +38,122 @@ export default function EmployerRegister({ navigation }) {
   }
 
   return (
-    <KeyboardAvoidingView
-        style={styles.container}
-        behavior="padding">
+    <View style={{backgroundColor: '#FFC000', flex: 1}}>
+      <KeyboardAvoidingView
+          style={styles.container}
+          behavior="padding">
 
-      <View style={styles.inputContainer}>
-        <Text>Employer</Text>
+        <View style={styles.inputContainer}>
+          <Text style={styles.Text}>Employer Register</Text>
 
-        <TextInput 
-            placeholder='Name'
-            value={name}
-            onChangeText={setName}
-            style={styles.input}
-        />
+          <TextInput 
+              placeholder='Name'
+              value={name}
+              onChangeText={setName}
+              style={styles.input}
+          />
 
-        <TextInput 
-            placeholder='Email'
-            value={email}
-            onChangeText={setEmail}
-            style={styles.input}
-        />
+          <TextInput 
+              placeholder='Email'
+              value={email}
+              onChangeText={setEmail}
+              style={styles.input}
+          />
 
-        <TextInput 
-            placeholder='Password'
-            value={password}
-            onChangeText={setPassword}
-            style={styles.input}
-            secureTextEntry
-        />
+          <TextInput 
+              placeholder='Password'
+              value={password}
+              onChangeText={setPassword}
+              style={styles.input}
+              secureTextEntry
+          />
 
-        <TextInput 
-            placeholder='Telephone Number'
-            value={phoneNumber}
-            onChangeText={setPhoneNumber}
-            style={styles.input}
-        />
+          <TextInput 
+              placeholder='Telephone Number'
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              style={styles.input}
+          />
+          
+          <TextInput 
+              placeholder='Profile picture'
+              value={profile_pic}
+              onChangeText={setProfile_pic}
+              style={styles.input}
+          />
+        </View>
+
+        <View style={styles.buttonContainerlog}>
         
-        <TextInput 
-            placeholder='Profile picture'
-            value={profile_pic}
-            onChangeText={setProfile_pic}
-            style={styles.input}
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
-
-        <TouchableOpacity
+          <TouchableOpacity
             onPress={register}
-            style={[styles.button]}
-        >
-            <Text style={styles.buttonText}>Register</Text>
-        </TouchableOpacity> 
-
-        <TouchableOpacity
+            style={styles.bottonlog}
+          >
+            <Text style={  styles.bottonTextlog}>Register</Text>
+          </TouchableOpacity> 
+          
+          <TouchableOpacity
             onPress={() => navigation.navigate('EmployerLogin')}
-            style={[styles.button, styles.buttonOutline]}
-        >
-            <Text style={styles.buttonOutlineText}>Login</Text>
-        </TouchableOpacity>
+            style={[styles.bottonlog, styles.bottonOutlinelog]}
+          >
+            <Text style={styles.bottonText2log}>Login</Text>
+          </TouchableOpacity>
 
-      </View>
-    </KeyboardAvoidingView>
+        </View>
+      </KeyboardAvoidingView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 150,
-      
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 150,
   },
   inputContainer: {
-      width: '80%'
+    width: '80%'
   },
   input: {
       backgroundColor: 'white',
-      paddingHorizontal: 15,
+      paddingHorizontal: 12,
       paddingVertical: 10,
-      borderRadius: 10,
-      marginTop: 5,
+      borderRadius: 20,
+      marginTop: 10,
   },
-  buttonContainer: {
-      width: '60%',
+  bottonContainerlog: {
+      
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 40,
   },
-  button: {
-      backgroundColor: '#0782F9',
-      width: '100%',
+  bottonlog: {
+      marginTop: 30,
+      width: 200,
+      backgroundColor: '#28282B',
       padding: 15,
       borderRadius: 10,
   },
-  buttonOutline: {
+  bottonText2log: {
+      color: '#28282B',
+      fontWeight: '700',
+      fontSize: 16,
+  },
+  bottonOutlinelog: {
       backgroundColor: 'white',
       marginTop: 5,
-      borderColor: '#0782F9',
+      borderColor: '#28282B',
       borderWidth: 2,
   },
-  buttonText: {
+  bottonTextlog: {
       color: 'white',
       fontWeight: '700',
       fontSize: 16,
-      paddingBottom: 5,
   },
+
+  Text: {
+    fontSize: 16,
+    fontWeight: '900',
+    paddingBottom: 10,
+  }
 })
