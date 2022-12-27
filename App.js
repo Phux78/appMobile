@@ -7,9 +7,10 @@ import React, {useState,useEffect,useCallback} from 'react';
 import SplashScreen from './src/SplashScreen';
 import IndexFreelance from './src/routers/IndexFreelance';
 import IndexEmployer from './src/routers/IndexEmployer';
-import SelectRoll from './src/routers/SelectRoll';
-import SelectFreelance from './src/SetRollFreelance/SelectFreelance';
-import SelectEmployer from './src/SetRollEmployer/SelectEmployer';
+import EmployerLogin from './src/EmployerScreen/EmployerLogin';
+import FreelanceLogin from './src/FreelanceScreen/FreelanceLogin';
+import EmployerRegister from './src/EmployerScreen/EmployerRegister';
+import FreelanceRegister from './src/FreelanceScreen/FreelanceRegister';
 
 
 //const Drawer = createDrawerNavigator();
@@ -24,10 +25,23 @@ const App = () => {
               component={SplashScreen}
               
             /> */}
+          <Stack.Screen 
+              name="EmployerLogin"
+              component={EmployerLogin}
+            />
           
           <Stack.Screen 
-              name="SelectRoll"
-              component={SelectRoll}
+              name="FreelanceLogin"
+              component={FreelanceLogin}
+            />
+          
+          <Stack.Screen
+              name="EmployerRegister"
+              component={EmployerRegister}
+          />
+          <Stack.Screen
+              name="FreelanceRegister"
+              component={FreelanceRegister}
           />
               
           <Stack.Screen
@@ -39,16 +53,6 @@ const App = () => {
               name="IndexEmployer"
               component={IndexEmployer}
             />
-
-          <Stack.Screen
-              name="SelectFreelance"
-              component={SelectFreelance}
-          />
-
-          <Stack.Screen
-              name="SelectEmployer"
-              component={SelectEmployer}
-          />
           
       </Stack.Navigator>    
     </NavigationContainer>
