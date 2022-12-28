@@ -97,7 +97,7 @@ const FeedEmployer = ({navigation}) => {
 
   if (typeof search === 'string' && search.length === 0) {
     return (
-      <SafeAreaView style={styles.bgw}>
+      <SafeAreaView style={{backgroundColor: '#FFC000', flex: 1}}>
         <View style={styles.container}>
           <SearchBar
             round
@@ -132,7 +132,7 @@ const FeedEmployer = ({navigation}) => {
     );
   } else {
     return (
-      <SafeAreaView style={styles.bgw}>
+      <SafeAreaView style={{backgroundColor: '#FFC000', flex: 1}}>
         <View style={styles.container}>
           <SearchBar
             round
@@ -224,9 +224,6 @@ const styles = StyleSheet.create({
   },
   bgw: {
     backgroundColor: 'white'
-  },
-  bg: {
-    backgroundColor: 'yellow'
   },
   shadowOffset: {
     width: '30%',

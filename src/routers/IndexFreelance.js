@@ -17,29 +17,29 @@ const Drawer = createDrawerNavigator();
 const IndexFreelance = () => {
   return (
 
-      <Drawer.Navigator >
+      <Drawer.Navigator>
           <Drawer.Screen
             name="FeedPost"
             component={FeedPost}
-            options={{ drawerLabel: 'Home page' }}
+            options={{ drawerLabel: 'Home page', headerShown: false,}}
           />
           
           <Drawer.Screen
             name="FeedEmployer"
             component={FeedEmployer}
-            options={{ drawerLabel: 'Feed' }}
+            options={{ drawerLabel: 'Feed',headerShown: false, }}
           />
 
           <Drawer.Screen 
             name="Profile"
             component={Profile}
-            options={{ drawerLabel: 'Profile' }}
+            options={{ drawerLabel: 'Profile',headerShown: false,}}
           />
 
           <Drawer.Screen
             name="Logout"
             component={Logout}
-            options={{ drawerLabel: 'Logout' }}
+            options={{ drawerLabel: 'Logout',headerShown: false, }}
           />    
           
           <Drawer.Screen
@@ -73,6 +73,7 @@ export default IndexFreelance;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'yellow',
   },
   bg: {
     backgroundColor: 'yellow'

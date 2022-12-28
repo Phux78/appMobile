@@ -20,11 +20,11 @@ const App = () => {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen 
+          <Stack.Screen 
               name="Splash"
               component={SplashScreen}
               
-            /> */}
+            />
           <Stack.Screen 
               name="EmployerLogin"
               component={EmployerLogin}

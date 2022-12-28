@@ -1,5 +1,7 @@
-import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, TouchableOpacity } from 'react-native'
-import React, {useState} from 'react';
+import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, TouchableOpacity } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const API = 'http:/192.168.1.103:9000';
@@ -8,7 +10,28 @@ const API = 'http:/192.168.1.103:9000';
 export default function CreatePost ({navigation}) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [user, setUser] = useState();
 
+    const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (isFocused) {
+      const fetchUser = async () => {
+        const token = await AsyncStorage.getItem('Token');
+        const response = await axios.get(`${API}/profileEM/me`, {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        if (response.data.status === 200) {
+          setUser(response.data.employer);
+        }
+      };
+      fetchUser();
+    }
+  }, [isFocused]);
+
+  console.log(user)
 
     const createPostFunction = () => {
         if(!title || !content){
@@ -18,6 +41,9 @@ export default function CreatePost ({navigation}) {
         axios.post(`${API}/posts`,{
             title: title,
             content: content,
+            contact: user.email,
+            name: user.name,
+            profile_pic: user.profile_pic,
         })
         .then((response) => {
             if(response.data.status === 201){

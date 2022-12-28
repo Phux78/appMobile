@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,7 +10,7 @@ const Profile = ({navigation}) => {
   const [user, setUser] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const API = 'http:/192.168.214.131:9000';
+  const API = 'http:/192.168.1.103:9000';
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -31,6 +31,8 @@ const Profile = ({navigation}) => {
     }
   }, [isFocused]);
 
+  console.log(user)
+
   return (
     <SafeAreaView>
       {
@@ -39,6 +41,8 @@ const Profile = ({navigation}) => {
             <Text>{user.name}</Text>
             <Text>{user.email}</Text>
             <Text>{user.location}</Text>
+            <Image source={{uri: user.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
+
             <TouchableOpacity
                     onPress={() => navigation.navigate('EditProfile')}
                     
