@@ -9,7 +9,7 @@ import Logout from '../Logout';
 import FeedPost from '../FreelanceScreen/FeedPost';
 import CardInfo from '../CardInfo';
 import PostEach from '../EmployerScreen/PostEach';
- 
+import CustomDrawer from '../routers/CustomDrawer';
 
 
 const Drawer = createDrawerNavigator();
@@ -17,29 +17,59 @@ const Drawer = createDrawerNavigator();
 const IndexFreelance = () => {
   return (
 
-      <Drawer.Navigator>
+      <Drawer.Navigator drawerContent={props => <CustomDrawer {...props}/>}>
           <Drawer.Screen
             name="FeedPost"
             component={FeedPost}
-            options={{ drawerLabel: 'Home page', headerShown: false,}}
+            options={{
+              drawerLabel: 'Home page',
+              headerStyle: {
+                backgroundColor: '#28282B',
+              },
+              headerTintColor: 'white',
+              drawerActiveBackgroundColor: '#FFC000',
+              drawerActiveTintColor: 'black',
+              drawerInactiveTintColor: 'white',
+            }}
           />
           
           <Drawer.Screen
             name="FeedEmployer"
             component={FeedEmployer}
-            options={{ drawerLabel: 'Feed',headerShown: false, }}
+            options={{ drawerLabel: 'Feed',headerStyle: {
+              backgroundColor: '#28282B',
+            },
+            headerTintColor: 'white',
+            drawerActiveBackgroundColor: '#FFC000',
+            drawerActiveTintColor: 'black',
+            drawerInactiveTintColor: 'white',
+          }}
           />
 
           <Drawer.Screen 
             name="Profile"
             component={Profile}
-            options={{ drawerLabel: 'Profile',headerShown: false,}}
+            options={{ drawerLabel: 'Profile',headerStyle: {
+              backgroundColor: '#28282B',
+            },
+            headerTintColor: 'white',
+            drawerActiveBackgroundColor: '#FFC000',
+            drawerActiveTintColor: 'black',
+            drawerInactiveTintColor: 'white',
+          }}
           />
 
           <Drawer.Screen
             name="Logout"
             component={Logout}
-            options={{ drawerLabel: 'Logout',headerShown: false, }}
+            options={{ drawerLabel: 'Logout',headerStyle: {
+              backgroundColor: '#28282B',
+            },
+            headerTintColor: 'white',
+            drawerActiveBackgroundColor: '#FFC000',
+            drawerActiveTintColor: 'black',
+            drawerInactiveTintColor: 'white',
+          }}
           />    
           
           <Drawer.Screen
