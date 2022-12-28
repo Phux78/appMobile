@@ -18,7 +18,7 @@ export default function FreelanceRegister({ navigation }) {
   const [profile_pic, setProfile_pic] = useState('');
 
   const register = () => {
-    if(!name || !email || !password || !phoneNumber || !Jobtitle) {
+    if(!name || !email || !password || !phoneNumber || !Jobtitle || !profile_pic) {
       alert('Register failed, Check your infomation again.');
       return;
     }
@@ -42,8 +42,6 @@ export default function FreelanceRegister({ navigation }) {
     })
   }
 
-  
-        
         return (
           <View style={{backgroundColor: '#FFC000', flex: 1}}>
             <KeyboardAvoidingView

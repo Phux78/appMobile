@@ -33,7 +33,7 @@ export default function CreatePost ({navigation}) {
 
   console.log(user)
 
-    const createPostFunction = () => {
+    const PostFunction = () => {
         if(!title || !content){
             alert('Looks like you forgot to fill in something.')
             return;
@@ -56,43 +56,48 @@ export default function CreatePost ({navigation}) {
           })
     }
 
+    const CancelFunction = () => {
+      setTitle('');
+      setContent('');  
+    };
+
   return (
-    <KeyboardAvoidingView
-        style={styles.container}
-        behavior="padding">
+    <KeyboardAvoidingView style={{backgroundColor: '#FFC000',flex: 1}}>
+      <View style={styles.container}>
+        <View style={styles.inputContainer}>
+          <TextInput 
+              placeholder='Title'
+              value={title}
+              onChangeText={setTitle}
+              style={styles.input}
+          />
 
-      <View style={styles.inputContainer}>
-        <Text>CreatePost</Text>
-        <TextInput 
-            placeholder='Title'
-            value={title}
-            onChangeText={setTitle}
-            style={styles.input}
-        />
+          <TextInput 
+              placeholder='Content'
+              value={content}
+              onChangeText={setContent}
+              style={styles.input2}
+              textAlignVertical="top"
+              multiline={true}
+              
+          />
+        </View>
 
-        <TextInput 
-            placeholder='Content'
-            value={content}
-            onChangeText={setContent}
-            style={styles.input}
-            
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-            onPress={createPostFunction}
-            style={styles.button}
-        >
-            <Text style={styles.buttonText}>Post</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity
-            onPress={() => navigation.navigate('FeedEmployer')}
-            style={[styles.button, styles.buttonOutline]}
-        >
-            <Text style={styles.buttonText2}>Cancel</Text>
-        </TouchableOpacity> 
+        <View style={styles.bottonContainer}>
+          <TouchableOpacity
+              onPress={PostFunction}
+              style={styles.botton}
+          >
+              <Text style={styles.bottonText}>Post</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+              onPress={CancelFunction}
+              style={[styles.botton, styles.bottonOutline]}
+          >
+              <Text style={styles.buttonText2}>Cancel</Text>
+          </TouchableOpacity> 
+        </View>
       </View>
     </KeyboardAvoidingView>
   )
@@ -102,12 +107,8 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 150,
-        
+        marginTop: 80,
     },
-    bg: {
-        backgroundColor: 'yellow'
-      },
     inputContainer: {
         width: '80%'
     },
@@ -118,33 +119,40 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 5,
     },
-    buttonContainer: {
-        width: '60%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 40,
-    },
-    button: {
-        backgroundColor: '#0782F9',
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-    },
-    buttonText2: {
-        color: 'black',
-        fontWeight: '700',
-        fontSize: 16,
-        paddingBottom: 5,
-      },
-    buttonOutline: {
-        backgroundColor: 'white',
-        marginTop: 5,
-        borderColor: '#0782F9',
-        borderWidth: 2,
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-    }
+    input2: {
+      backgroundColor: 'white',
+      paddingHorizontal: 15,
+      paddingVertical: 10,
+      borderRadius: 10,
+      height: 200,
+      marginTop: 5,
+  },
+    bottonContainer: {
+      
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 40,
+  },
+    botton: {
+      width: 200,
+      backgroundColor: '#28282B',
+      padding: 15,
+      borderRadius: 10,
+  },
+  bottonText2: {
+      color: '#28282B',
+      fontWeight: '700',
+      fontSize: 16,
+  },
+  bottonOutline: {
+      backgroundColor: 'white',
+      marginTop: 5,
+      borderColor: '#28282B',
+      borderWidth: 2,
+  },
+  bottonText: {
+      color: 'white',
+      fontWeight: '700',
+      fontSize: 16,
+  },
 })

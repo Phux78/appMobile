@@ -17,13 +17,13 @@ const Profile = ({navigation}) => {
     if (isFocused) {
       const fetchUser = async () => {
         const token = await AsyncStorage.getItem('Token');
-        const response = await axios.get(`${API}/profileFL/me`, {
+        const response = await axios.get(`${API}/profileEM/me`, {
           headers: {
             "Authorization": `Bearer ${token}`
           }
         });
         if (response.data.status === 200) {
-          setUser(response.data.freelance);
+          setUser(response.data.employer);
           setIsLoaded(true);
         }
       };
@@ -48,15 +48,9 @@ const Profile = ({navigation}) => {
 
               </View>
             </View>
-            <View style={{flexDirection: 'row', paddingTop: 10}}>
-              <View style={{flexDirection: 'column'}}>
-                <View style={styles.card3}>
-                  <Image style={styles.icon} source={ require('../src/pic/suitcase.png') } />
-                  <Text numberOfLines={5} style={styles.jobTitle}> {user.jobTitle}</Text>
-                </View>
-              </View>
+            <View style={{flexDirection: 'row', paddingTop: 10, alignSelf: 'center'}}>
 
-              <View style={{flexDirection: 'column', paddingLeft: 30}}>
+              <View style={{flexDirection: 'column'}}>
                 <View style={styles.card4}>
                   <Image style={styles.icon} source={ require('../src/pic/ringing.png') } />
                     <Text style={styles.phone}>{user.phoneNumber}</Text>
@@ -123,6 +117,7 @@ const styles = StyleSheet.create({
   card4:{
     height: 150,
     width: 150,
+    alignSelf: 'center',
     borderColor: 'Black',
     backgroundColor: 'white',
     elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,

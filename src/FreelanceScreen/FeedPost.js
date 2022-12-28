@@ -22,7 +22,7 @@ const FeedPost = ({navigation}) => {
 
   return (
     <ScrollView style={{backgroundColor: '#FFC000', flex: 1}}>
-      <View style={{paddingTop: 45}}></View>
+      <View style={{paddingTop: 5}}></View>
       {
         posts.map((item, key) => {
           return(
@@ -37,8 +37,6 @@ const FeedPost = ({navigation}) => {
                 </View>
               </TouchableOpacity> 
             </View>
-
-
           )
         })
       }
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
   card: {
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: '#36454F',
+    backgroundColor: 'white',
     paddingHorizontal: 5,
     paddingVertical: 0,
     marginVertical: 2,
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: '96%',
     height: 170,
-    borderRadius: 15,
+    borderRadius: 15, elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
   },
   title:{
     fontWeight: 'bold',
@@ -76,7 +74,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingLeft: 5,
     paddingTop: 5,
-    color: 'white',
+    color: 'Black',
 
   },
   content:{
@@ -84,10 +82,14 @@ const styles = StyleSheet.create({
     marginTop: 6,
     paddingLeft: 20,
     height: 95,
-    color: 'white',
+    color: 'Black',
   },
   by:{
-    marginTop: 5, fontWeight: '700', alignSelf: 'flex-start', paddingLeft: 5,color: 'white',
+    marginTop: 5, 
+    fontWeight: '700', 
+    alignSelf: 'flex-start', 
+    paddingLeft: 5,
+    color: 'Black',
   }
 
 });

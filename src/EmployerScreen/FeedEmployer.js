@@ -58,20 +58,23 @@ const FeedEmployer = ({navigation}) => {
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-        <SafeAreaView style={styles.bgw}>
-          <ScrollView style={styles.bg}>
+        <SafeAreaView style={{backgroundColor: '#FFC000'}}>
+          <ScrollView>
             <TouchableOpacity style={[styles.card]} onPress={() => navigation.navigate('FreelanceProfileEach',{item})}>
-              <View>
-                <Image source={{ uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
-              </View>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'column'}}>
+                  <Image source={{uri: item.profile_pic }} style = {styles.pic} resizeMode="cover"/>
+                </View>
 
-              <View>
-                <Text style={styles.txr}>{ item.name }</Text>
-                <Text style={styles.txr}>{ item.email }</Text>
-                <Text style={styles.txr}>{ item.jobTitle }</Text>
-                <Text style={styles.txr}>{ item.phoneNumber }</Text>
+                <View style={{flexDirection: 'column'}}>
+                  <Text style={styles.txrName}>{ item.name }</Text>
+                  <View >
+                    <Text style={styles.txr}>{ item.jobTitle }</Text>
+                  </View>
+                    <Text style={styles.txr}>{ item.email }</Text>
+                </View>
               </View>
-            </TouchableOpacity>                     
+            </TouchableOpacity>                    
           </ScrollView>
         </SafeAreaView>
     );
@@ -98,7 +101,7 @@ const FeedEmployer = ({navigation}) => {
   if (typeof search === 'string' && search.length === 0) {
     return (
       <SafeAreaView style={{backgroundColor: '#FFC000', flex: 1}}>
-        <View style={styles.container}>
+        <View>
           <SearchBar
             round
             searchIcon={{ size: 24 }}
@@ -108,20 +111,24 @@ const FeedEmployer = ({navigation}) => {
             value={search}
           />
         </View>
-        <ScrollView style={styles.bg}>
+        <ScrollView style={{paddingTop: 5}}>
               {
                 AllUsers.map((item, key) => {
-                  console.log(item)
                   return(
                     <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfileEach',{item})}>
-                      <View>
-                        <Image source={{uri: item.profile_pic }} style = {{ width: 80, height: 80 }} resizeMode="cover"/>
-                      </View>
-                      <View>
-                        <Text style={styles.txr}>{ item.name }</Text>
-                        <Text style={styles.txr}>{ item.email }</Text>
-                        <Text style={styles.txr}>{ item.jobTitle }</Text>
-                        <Text style={styles.txr}>{ item.phoneNumber }</Text>
+                      <View style={{flexDirection: 'row'}}>
+                        <View style={{flexDirection: 'column'}}>
+                          <Image source={{uri: item.profile_pic }} style = {styles.pic} resizeMode="cover"/>
+                        </View>
+
+                        <View style={{flexDirection: 'column'}}>
+                          <Text style={styles.txrName}>{ item.name }</Text>
+                            <View >
+                              <Text style={styles.txr}>{ item.jobTitle }</Text>
+                            </View>
+                          <Text style={styles.txr}>{ item.email }</Text>
+                        </View>
+
                       </View>
                     </TouchableOpacity> 
                   );
@@ -160,76 +167,39 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
   },
+  pic:{
+    width: 80, 
+    height: 80, 
+    borderRadius: 15,
+  },
   itemStyle: {
     padding: 10,
   },
   txr:{
-    textAlign:'right'
+    color: 'white',
+    paddingRight: 5,flexDirection: 'column',
+    paddingLeft: 20,
   },
-  title: {
+  txrName:{
     fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 10
-  },
-  input: {
-    backgroundColor: 'white',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 5,
-},
-  leftTitle: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 10,
-    alignSelf: 'left'
+    color: 'white',
+    paddingHorizontal: 2,
+    paddingVertical: 2,
+    marginVertical: 5,
+    paddingRight: 5,
+    paddingLeft: 20,
   },
   card: {
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: 'white',
-    paddingHorizontal: 15,
-    paddingVertical: 6.5,
-    marginVertical: 3.5,
+    backgroundColor: '#36454F',
+    paddingHorizontal: 4,
+    paddingVertical: 4,
+    marginVertical: 4,
     alignSelf: 'center',
     borderRadius: 15,
-    width: '96%',
-  },
-  subTitle: {
-    alignSelf: 'left',
-    fontWeight: 'bold',
-    fontSize: 16
-  },
-  input: {
-    alignSelf: 'center',
-    backgroundColor: 'white',
-    borderColor: '#e6e6e6',
-    borderWidth: 0.5,
-    borderRadius: 15,
-    paddingVertical: 7,
-    width: '95%',
-    paddingLeft: 25,
-    marginVertical: 10
-  },
-  button: {
-    backgroundColor: '#0275d8',
-    borderRadius: 5,
-    paddingVertical: 10,
-    width: '100%',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '800',
-    textAlign: 'center'
-  },
-  bgw: {
-    backgroundColor: 'white'
-  },
-  shadowOffset: {
-    width: '30%',
-    height: '60%',
-  },
-  shadowOpacity:  0.17,
-  shadowRadius: 3.05,
-  elevation: 4
+    width: '90%',
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
+    
+  }
 });

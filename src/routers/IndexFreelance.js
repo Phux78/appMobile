@@ -10,6 +10,7 @@ import FeedPost from '../FreelanceScreen/FeedPost';
 import CardInfo from '../CardInfo';
 import PostEach from '../EmployerScreen/PostEach';
 import CustomDrawer from '../routers/CustomDrawer';
+import AboutUs from '../AboutUs';
 
 
 const Drawer = createDrawerNavigator();
@@ -19,10 +20,10 @@ const IndexFreelance = () => {
 
       <Drawer.Navigator drawerContent={props => <CustomDrawer {...props}/>}>
           <Drawer.Screen
-            name="FeedPost"
+            name="Feed"
             component={FeedPost}
             options={{
-              drawerLabel: 'Home page',
+              drawerLabel: 'Feed',
               headerStyle: {
                 backgroundColor: '#28282B',
               },
@@ -31,19 +32,6 @@ const IndexFreelance = () => {
               drawerActiveTintColor: 'black',
               drawerInactiveTintColor: 'white',
             }}
-          />
-          
-          <Drawer.Screen
-            name="FeedEmployer"
-            component={FeedEmployer}
-            options={{ drawerLabel: 'Feed',headerStyle: {
-              backgroundColor: '#28282B',
-            },
-            headerTintColor: 'white',
-            drawerActiveBackgroundColor: '#FFC000',
-            drawerActiveTintColor: 'black',
-            drawerInactiveTintColor: 'white',
-          }}
           />
 
           <Drawer.Screen 
@@ -58,6 +46,19 @@ const IndexFreelance = () => {
             drawerInactiveTintColor: 'white',
           }}
           />
+
+          <Drawer.Screen
+            name="About us"
+            component={AboutUs}
+            options={{ drawerLabel: 'About us', headerStyle: {
+              backgroundColor: '#28282B',
+            },
+            headerTintColor: 'white',
+            drawerActiveBackgroundColor: '#FFC000',
+            drawerActiveTintColor: 'black',
+            drawerInactiveTintColor: 'white',
+          }}
+          />    
 
           <Drawer.Screen
             name="Logout"
