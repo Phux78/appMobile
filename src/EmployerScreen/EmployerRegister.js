@@ -15,7 +15,7 @@ export default function EmployerRegister({ navigation }) {
 
 
   const register = () => {
-    if(!name || !email || !password || !phoneNumber) {
+    if(!name || !email || !password || !phoneNumber || !profile_pic) {
       alert('Register failed, Check your infomation again.');
       return;
     }

@@ -7,7 +7,6 @@ import Profile from '../Profile';
 import EditProfile from '../EditProfile';
 import Logout from '../Logout';
 import FeedPost from '../FreelanceScreen/FeedPost';
-import CardInfo from '../CardInfo';
 import PostEach from '../EmployerScreen/PostEach';
 import CustomDrawer from '../routers/CustomDrawer';
 import AboutUs from '../AboutUs';
@@ -82,12 +81,6 @@ const IndexFreelance = () => {
           <Drawer.Screen
             name="FreelanceProfileEach"
             component={FreelanceProfileEach}
-            options={{ drawerItemStyle: { height: 0 } }}
-          /> 
-
-          <Drawer.Screen
-            name="CardInfo"
-            component={CardInfo}
             options={{ drawerItemStyle: { height: 0 } }}
           /> 
 

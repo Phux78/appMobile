@@ -6,7 +6,6 @@ import FreelanceProfileEach from '../FreelanceScreen/FreelanceProfileEach';
 import ProfileEM from '../ProfileEM';
 import EditProfile from '../EditProfile';
 import Logout from '../Logout';
-import CardInfo from '../CardInfo';
 import CreatePost from '../EmployerScreen/CreatePost';
 import PostEach from '../EmployerScreen/PostEach';
 import CustomDrawer from '../routers/CustomDrawer';
@@ -93,12 +92,6 @@ const IndexEmployer = () => {
           <Drawer.Screen
             name="FreelanceProfileEach"
             component={FreelanceProfileEach}
-            options={{ drawerItemStyle: { height: 0 } }}
-          /> 
-
-          <Drawer.Screen
-            name="CardInfo"
-            component={CardInfo}
             options={{ drawerItemStyle: { height: 0 } }}
           /> 
 
