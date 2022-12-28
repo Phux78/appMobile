@@ -1,3 +1,3 @@
-# appMobile
+# Freelance Finder (FF) Mobile Porject
 
-npm i 
+-- npm i 
