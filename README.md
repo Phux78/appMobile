@@ -1,1 +1,3 @@
 # appMobile
+
+npm i 
