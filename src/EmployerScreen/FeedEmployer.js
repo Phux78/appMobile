@@ -60,7 +60,7 @@ const FeedEmployer = ({navigation}) => {
       // Flat List Item
         <SafeAreaView style={{backgroundColor: '#FFC000'}}>
           <ScrollView>
-            <TouchableOpacity style={[styles.card]} onPress={() => navigation.navigate('FreelanceProfileEach',{item})}>
+            <TouchableOpacity style={[styles.card]} onPress={() => navigation.navigate('Freelance Profile',{item})}>
               <View style={{flexDirection: 'row'}}>
                 <View style={{flexDirection: 'column'}}>
                   <Image source={{uri: item.profile_pic }} style = {styles.pic} resizeMode="cover"/>
@@ -115,7 +115,7 @@ const FeedEmployer = ({navigation}) => {
               {
                 AllUsers.map((item, key) => {
                   return(
-                    <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('FreelanceProfileEach',{item})}>
+                    <TouchableOpacity style={[styles.card]}  key={key} onPress={() => navigation.navigate('Freelance Profile',{item})}>
                       <View style={{flexDirection: 'row'}}>
                         <View style={{flexDirection: 'column'}}>
                           <Image source={{uri: item.profile_pic }} style = {styles.pic} resizeMode="cover"/>

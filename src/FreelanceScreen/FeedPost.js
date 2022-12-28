@@ -27,12 +27,12 @@ const FeedPost = ({navigation}) => {
         posts.map((item, key) => {
           return(
             <View>
-              <TouchableOpacity style={styles.card} key={key} onPress={() => navigation.navigate('PostEach',{item})}>
+              <TouchableOpacity style={styles.card} key={key} onPress={() => navigation.navigate('Post',{item})}>
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'column'}}>               
-                      <Text style={styles.title}>Title: {item.title}</Text>
+                      <Text style={styles.title}>Title : {item.title}</Text>
                       <Text numberOfLines={5} style={styles.content}>{item.content}</Text>
-                      <Text style={styles.by}>Post by: {item.name}</Text>     
+                      <Text style={styles.by}>Post by :   {item.name}</Text>     
                     </View>
                 </View>
               </TouchableOpacity> 
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   title:{
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 16,
     flexDirection: "row",
     paddingLeft: 5,
     paddingTop: 5,
@@ -84,8 +84,7 @@ const styles = StyleSheet.create({
     height: 95,
     color: 'Black',
   },
-  by:{
-    marginTop: 5, 
+  by:{ 
     fontWeight: '700', 
     alignSelf: 'flex-start', 
     paddingLeft: 5,

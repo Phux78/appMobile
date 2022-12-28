@@ -73,15 +73,27 @@ const IndexFreelance = () => {
           />    
           
           <Drawer.Screen
-            name="PostEach"
+            name="Post"
             component={PostEach}
-            options={{ drawerItemStyle: { height: 0 } }}
+            options={{ drawerItemStyle: { height: 0 },headerStyle: {
+              backgroundColor: '#28282B',
+            },
+            headerTintColor: 'white',
+            drawerActiveBackgroundColor: '#FFC000',
+            drawerActiveTintColor: 'black',
+            drawerInactiveTintColor: 'white', }}
           />  
 
           <Drawer.Screen
-            name="FreelanceProfileEach"
+            name="Freelance Profile"
             component={FreelanceProfileEach}
-            options={{ drawerItemStyle: { height: 0 } }}
+            options={{ drawerItemStyle: { height: 0 },headerStyle: {
+              backgroundColor: '#28282B',
+            },
+            headerTintColor: 'white',
+            drawerActiveBackgroundColor: '#FFC000',
+            drawerActiveTintColor: 'black',
+            drawerInactiveTintColor: 'white', }}
           /> 
 
           <Drawer.Screen

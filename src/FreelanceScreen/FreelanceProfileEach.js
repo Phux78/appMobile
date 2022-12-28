@@ -4,28 +4,44 @@ import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaVie
 const FreelanceProfileEach = ({navigation,route:{params:{item}}}) => {
   //console.log(route.params.item)
   return (    
-    <SafeAreaView>
-      <ScrollView >
-      <View style={styles.container}>
-        <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{ uri: item.profile_pic }}/>
-            <View style={styles.body}>
-              <View style={styles.bodyContent}>
-                <Text style={styles.name}>{ item.name }</Text>
-                <Text style={styles.info}>{ item.jobTitle }</Text>
-                <Text style={styles.contact}>{ item.email }{'\n'}{ item.phoneNumber }</Text>
-                <Text style={styles.description}>fsaLorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+    <SafeAreaView style={{backgroundColor: '#FFC000', flex: 1}}>
+          <View style={styles.card}>
+            <Image source={{uri: item.profile_pic }} style = {styles.pic} resizeMode="cover"/>
+            
+            <Text style={styles.name}>{item.name}</Text>
+              <View style={styles.card2} />
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'column'}}>
+                
+              </View>
+              <View style={{flexDirection: 'column'}}>
 
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.contact}>Response Rate { item.responseRate } {'\n'} On-Time Rate { item.onTimeRate }  </Text>
-                </TouchableOpacity>              
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text>1 more tank or sup or im go 5th dps  :)</Text> 
-                </TouchableOpacity>
               </View>
             </View>
-      </View>
-      </ScrollView>
+            <View style={{flexDirection: 'row', paddingTop: 10}}>
+              <View style={{flexDirection: 'column'}}>
+                <View style={styles.card3}>
+                  <Image style={styles.icon} source={ require('../pic/suitcase.png') } />
+                  <Text numberOfLines={5} style={styles.jobTitle}> {item.jobTitle}</Text>
+                </View>
+              </View>
+
+              <View style={{flexDirection: 'column', paddingLeft: 30}}>
+                <View style={styles.card4}>
+                  <Image style={styles.icon} source={ require('../pic/ringing.png') } />
+                    <Text style={styles.phone}>{item.phoneNumber}</Text>
+                  <Image style={styles.icon} source={ require('../pic/email.png') } />
+                    <Text style={styles.email}>{item.email}</Text>
+                </View>
+              </View>
+            </View>
+            <TouchableOpacity
+                      onPress={() => navigation.navigate('EditProfile')}
+                      style={styles.bottonlog}
+                  >
+                      <Text style={styles.bottonTextlog}>Edit</Text>
+                  </TouchableOpacity>
+          </View>
     </SafeAreaView>
   );
 };
@@ -33,114 +49,83 @@ const FreelanceProfileEach = ({navigation,route:{params:{item}}}) => {
 export default FreelanceProfileEach
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 10,
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 10
-  },
-  leftTitle: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 10,
-    alignSelf: 'left'
-  },
-  card: {
-    backgroundColor: '#E8E8E8',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    marginVertical: 2,
+  pic:{
+    width: 120,
+    height: 120,
+    borderRadius: 100,
     alignSelf: 'center',
-    borderRadius: 5,
-    width: '100%',
+    marginTop: 20,
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
   },
-  subTitle: {
-    alignSelf: 'left',
-    fontWeight: 'bold',
-    fontSize: 16
-  },
-  input: {
-    borderColor: '#333',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingVertical: 7,
-    width: '100%',
-    paddingLeft: 10,
-    marginVertical: 4
-  },
-  button: {
-    backgroundColor: '#0275d8',
-    borderRadius: 5,
+
+  card:{
+    backgroundColor: 'white',
+    paddingHorizontal: 10,
     paddingVertical: 10,
-    width: '100%',
+    marginVertical: 7,
+    alignSelf: 'center',
+    width: '96%',
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
   },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '800',
-    textAlign: 'center'
+  card2:{
+    backgroundColor: 'black',
+    paddingHorizontal: 2,
+    paddingVertical: 3,
+    marginVertical: 2,
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
   },
-  header:{
-    backgroundColor: "yellow",
-    height:200,
+  card3:{
+    height: 150,
+    width: 150,
+    borderColor: 'Black',
+    backgroundColor: 'white',
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
   },
-  avatar: {
-    width: 130,
-    height: 130,
-    borderRadius: 63,
-    borderWidth: 4,
-    borderColor: "white",
-    marginBottom:10,
-    alignSelf:'center',
-    position: 'absolute',
-    marginTop:130
+  card4:{
+    height: 150,
+    width: 150,
+    borderColor: 'Black',
+    backgroundColor: 'white',
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
   },
-  name:{
-    fontSize:22,
-    color:"#FFFFFF",
-    fontWeight:'600',
-  },
-  body:{
-    marginTop:40,
-  },
-  bodyContent: {
-    flex: 1,
-    alignItems: 'center',
-    padding:30,
+  icon:{
+    width: 30,
+    height: 30,
+    marginTop: 15,
+    alignSelf: 'center',
   },
   name:{
-    fontSize:28,
-    color: "#696969",
-    fontWeight: "600"
+    paddingTop: 8,
+    paddingBottom: 5,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 28,
   },
-  info:{
-    fontSize:16,
-    color: "red",
-    marginTop:10,
-    textAlign: 'center'
+  email:{
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
-  contact:{
-    fontSize:16,
-    color: "orange",
-    marginTop:10,
-    textAlign: 'center'
+  phone:{
+    paddingTop: 10,
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
-  description:{
-    fontSize:16,
-    color: "#696969",
-    marginTop:10,
-    textAlign: 'center'
+  jobTitle:{
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    paddingTop: 5,
   },
-  buttonContainer: {
-    marginTop:10,
-    height:55,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:10,
-    width:180,
-    borderRadius:30,
-    backgroundColor: "yellow",
+  bottonlog: {
+    width: 200,
+    marginTop: 20,
+    backgroundColor: '#28282B',
+    padding: 15,
+    borderRadius: 10,
+    alignSelf: 'center',
+  },
+  bottonTextlog: {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 16,
   },
 });

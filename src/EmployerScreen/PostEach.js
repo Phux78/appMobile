@@ -2,14 +2,20 @@ import React, { Component,  useState, useEffect } from 'react';
 import { View, Image, ScrollView, Text, TouchableOpacity,StyleSheet, SafeAreaView } from 'react-native';
 
 const PostEach = ({navigation,route:{params:{item}}}) => {
-    //params:{item}
-  console.log(item)
   return (    
-    <SafeAreaView>
-        <View style={styles.container}>
-            <Text>{item.title}</Text>
-            <Text>{item.content}</Text>
+    <SafeAreaView style={{backgroundColor: '#FFC000', flex: 1}}>
+        <View style={styles.card}>
+            <Text style={styles.title}>{item.title}</Text>
+            <View style={styles.card2}/>
+              <Text style={{paddingTop: 5}}>{item.content}</Text>
+            <View style={{flexDirection: 'row', alignSelf: 'flex-end'}}>
+              <View style={{marginTop: 50}}>
+                  <Text style={styles.tx}> {item.name} </Text>
+                  <Text style={styles.tx2}> {item.contact} </Text>
+              </View>
+            </View>
         </View>
+        
     </SafeAreaView>
   );
 };
@@ -19,7 +25,29 @@ export default PostEach
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
+  },card:{
+    backgroundColor: 'white',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    marginVertical: 7,
+    alignSelf: 'center',
+    width: '96%',
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
+  },card2:{
+    backgroundColor: 'black',
+    paddingHorizontal: 2,
+    paddingVertical: 3,
+    marginVertical: 2,
+    elevation: 5, shadowOffset: { width: 2, height: 2 }, shadowOpacity:1, shadowRadius: 2,
   },
+  tx:{
+    fontWeight: '700',
+    padding: 2,
+    alignSelf: 'flex-end'},
+  tx2:{
+    fontWeight: '700',
+    padding: 2,
+},
   title: {
     fontWeight: 'bold',
     fontSize: 20,
@@ -30,20 +58,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     alignSelf: 'left'
-  },
-  card: {
-    backgroundColor: '#E8E8E8',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    marginVertical: 2,
-    alignSelf: 'center',
-    borderRadius: 5,
-    width: '100%',
-  },
-  subTitle: {
-    alignSelf: 'left',
-    fontWeight: 'bold',
-    fontSize: 16
   },
   input: {
     borderColor: '#333',
@@ -68,17 +82,6 @@ const styles = StyleSheet.create({
   header:{
     backgroundColor: "yellow",
     height:200,
-  },
-  avatar: {
-    width: 130,
-    height: 130,
-    borderRadius: 63,
-    borderWidth: 4,
-    borderColor: "white",
-    marginBottom:10,
-    alignSelf:'center',
-    position: 'absolute',
-    marginTop:130
   },
   name:{
     fontSize:22,

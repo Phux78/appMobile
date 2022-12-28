@@ -18,7 +18,7 @@ const CustomDrawer = (props) => {
             <View style={{height: 80, width: 80, borderRadius: 40, marginBottom: 30}}></View>
         </ImageBackground>
         <View>
-            <Text>Power By ChatGPT.OpenAI</Text>
+            <Text style={{color: 'white'}}>Version 1.0</Text>
         </View>
     </DrawerContentScrollView>
     </View>
